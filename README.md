@@ -1,2 +1,2 @@
-# sot-group2
-Short On Time ™
+
+# Short On Time ™
