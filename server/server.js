@@ -27,6 +27,8 @@ app.use(bodyParser.json());
 
 /* serve static files - see http://expressjs.com/en/starter/static-files.html */
 app.use('/', express.static('./../../client'));
+app.use(express.static('client'))
+
 
 /* The next three middleware are important to the API that we are building */
 
