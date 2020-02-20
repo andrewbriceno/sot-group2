@@ -1,11 +1,14 @@
 {
   "name": "short-on-time",
-  "version": "3.1.0",
+  "version": "0.0.1",
   "description": "Herbs Team",
+  "type": "module",
   "main": "server.js",
+  "engines": {
+    "node": "13.x"
+  },
   "scripts": {
-    "start": "node server/server.js",
-    "test": "cd server && jest listings.restart.test.js && jest listings.server.model.test.js && jest listings.server.routes.test.js"
+    "start": "node server/server.js"
   },
   "authors": [
     "Jonathan Conlin",
