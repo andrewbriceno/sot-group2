@@ -4,11 +4,8 @@
   "description": "Herbs Team",
   "type": "module",
   "main": "server.js",
-  "engines": {
-    "node": "13.x"
-  },
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node --experimental-modules server/server.js"
   },
   "authors": [
     "Jonathan Conlin",
