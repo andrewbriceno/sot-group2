@@ -1,7 +1,7 @@
 {
   "name": "short-on-time",
-  "version": "3.1.0",
-  "description": "Routing server-side requests using ExpressJS",
+  "version": "0.1",
+  "description": "Herbs Team",
   "type": "module",
   "main": "server.js",
   "scripts": {
