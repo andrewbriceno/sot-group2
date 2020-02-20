@@ -1,5 +1,5 @@
 {
-  "name": "bootcamp3",
+  "name": "short-on-time",
   "version": "3.1.0",
   "description": "Routing server-side requests using ExpressJS",
   "type": "module",
