@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import config from './config/config.js';
 import listingsRouter from './routes/listingsRouter.js';
+import usersRouter from './routes/usersRouter.js';
 import getCoordinates from './controllers/coordinatesController.js';
 
 //connect to database
@@ -38,6 +39,7 @@ app.use(express.static('client'))
    check the variables list above
 */
 app.use('/api/listings/', listingsRouter);
+app.use('/api/users/', usersRouter);
 
 
 /* Request Handler for coordinates

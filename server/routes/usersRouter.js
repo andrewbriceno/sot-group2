@@ -7,4 +7,6 @@ const usersRouter = express.Router();
 
   Note: the listings variable above and the file it is connected to help you trace
  */
-usersRouter.get('/signup', users.signup);
+usersRouter.post('/signup', users.signup);
+
+export default usersRouter;
