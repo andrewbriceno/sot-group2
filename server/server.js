@@ -4,7 +4,6 @@ import mongoose from 'mongoose';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import config from './config/config.js';
-import listingsRouter from './routes/listingsRouter.js';
 import usersRouter from './routes/usersRouter.js';
 import getCoordinates from './controllers/coordinatesController.js';
 
@@ -33,7 +32,6 @@ app.use(express.static('client'))
 app.use('/api/users/', usersRouter);
 
 app.all('/*', (req, res) => {
-
     res.sendFile(path.resolve("client/index.html"));
 });
 const PORT = process.env.PORT || 3000;
