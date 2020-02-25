@@ -46,3 +46,41 @@ export const signup = async (req, res) => {
     }
   );
 };
+
+export const signin = async (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  let user = await User.findOne({
+    email
+  });
+  if (!user)
+    return res.status(400).json({
+      message: "User Not Exist"
+    });
+
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch)
+    return res.status(400).json({
+      message: "Incorrect Password !"
+    });
+
+  const payload = {
+    user: {
+      id: user.id
+    }
+  };
+
+  jwt.sign(
+    payload,
+    "herbs",
+    {
+      expiresIn: 3600
+    },
+    (err, token) => {
+      if (err) throw err;
+      res.status(200).json({
+        token
+      });
+    }
+  );
+};
