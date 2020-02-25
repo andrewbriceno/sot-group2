@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import config from './config/config.js';
 import usersRouter from './routes/usersRouter.js';
-import getCoordinates from './controllers/coordinatesController.js';
+import adminRouter from './routes/adminRouter.js';
 
 //connect to database
 mongoose.connect(config.db.uri, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}).then(() => {
@@ -30,6 +30,7 @@ app.use('/', express.static('./../../client'));
 app.use(express.static('client'))
 
 app.use('/api/users/', usersRouter);
+app.use('/api/admin/', adminRouter);
 
 app.all('/*', (req, res) => {
 
