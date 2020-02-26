@@ -7,5 +7,6 @@ adminRouter.post('/addproduct', admin.addProduct);
 
 //glossary routes
 adminRouter.post('/addglossary', admin.addGlossary);
+adminRouter.get('/getglossary/:glossaryID', admin.getGlossary);
 
 export default adminRouter;

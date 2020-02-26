@@ -35,7 +35,22 @@ export const addGlossary = async (req, res) => {
     usage: req.body.usage,
     published: req.body.published,
   });
-  save_glossary.save(funciton (err, save_glossary) {
+  save_glossary.save(function (err, save_glossary) {
     console.log('saved =>', save_glossary);
+    return res.status(200).json({
+      message: 'Successfully added Glossary!'
+    });
   });
+};
+
+export const getGlossary = async (req, res) => {
+  const id = req.params.glossaryID;
+  let glossary = await Glossary.findById(id);
+  if(!glossary) {
+    return res.status(400).json({
+      message: 'Glossary does not exist!'
+    });
+  } else {
+    return res.status(200).json(glossary);
+  }
 }
