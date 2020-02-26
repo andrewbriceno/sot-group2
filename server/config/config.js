@@ -6,8 +6,5 @@ export default {
   db: {
     uri: 'mongodb://heroku_n06qj498:kpu278rin79edf41h8khskgd93@ds351628.mlab.com:51628/heroku_n06qj498'//place the URI of your mongo database here.
   },
-  openCage: {
-    key: '87c9efa371ce42728a856e4407fae932'
-  },
   port: 5000
 };

@@ -1,4 +1,3 @@
-/* Dependencies */
 import mongoose from 'mongoose';
 import User from '../models/UserModel.js';
 import config from '../config/config.js';
@@ -9,6 +8,19 @@ function initMongoose() {
   mongoose.connect(config.db.uri, {useNewUrlParser: true});
   let db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connection error:'));
+}
+
+function signJWT(payload, res) {
+  jwt.sign(payload, "herbs", { expiresIn: 3600 }, (err, token) => {
+      if (err) {
+        console.log("JWT error signing", err);
+        throw err;
+      }
+      res.status(200).json({
+        token
+      });
+    }
+  );
 }
 
 export const signup = async (req, res) => {
@@ -33,18 +45,7 @@ export const signup = async (req, res) => {
     }
   };
 
-  jwt.sign(
-    payload,
-    "herbs", {
-      expiresIn: 10000
-    },
-    (err, token) => {
-      if (err) throw err;
-      res.status(200).json({
-        token
-      });
-    }
-  );
+  signJWT(payload, res)
 };
 
 export const signin = async (req, res) => {
@@ -55,32 +56,20 @@ export const signin = async (req, res) => {
   });
   if (!user)
     return res.status(400).json({
-      message: "User Not Exist"
+      message: "User does not exist!"
     });
 
   const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch)
+  if (!isMatch) {
     return res.status(400).json({
-      message: "Incorrect Password !"
+      message: "Incorrect password!"
     });
-
+  }
   const payload = {
     user: {
       id: user.id
     }
   };
 
-  jwt.sign(
-    payload,
-    "herbs",
-    {
-      expiresIn: 3600
-    },
-    (err, token) => {
-      if (err) throw err;
-      res.status(200).json({
-        token
-      });
-    }
-  );
+  signJWT(payload, res)
 };
