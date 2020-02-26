@@ -1,4 +1,3 @@
-/* Dependencies */
 import mongoose from 'mongoose';
 import User from '../models/UserModel.js';
 import config from '../config/config.js';
@@ -11,6 +10,19 @@ function initMongoose() {
   db.on('error', console.error.bind(console, 'connection error:'));
 }
 
+function signJWT(payload, res) {
+  jwt.sign(payload, "herbs", { expiresIn: 3600 }, (err, token) => {
+      if (err) {
+        console.log("JWT error signing", err);
+        throw err;
+      }
+      res.status(200).json({
+        token
+      });
+    }
+  );
+}
+
 export const signup = async (req, res) => {
   initMongoose()
   let save_user
@@ -19,6 +31,7 @@ export const signup = async (req, res) => {
     username: req.body.username,
     password: req.body.password,
   });
+
   const salt = await bcrypt.genSalt(10);
   save_user.password = await bcrypt.hash(req.body.password, salt);
 
@@ -32,18 +45,7 @@ export const signup = async (req, res) => {
     }
   };
 
-  jwt.sign(
-    payload,
-    "herbs", {
-      expiresIn: 10000
-    },
-    (err, token) => {
-      if (err) throw err;
-      res.status(200).json({
-        token
-      });
-    }
-  );
+  signJWT(payload, res)
 };
 
 export const signin = async (req, res) => {
@@ -54,32 +56,20 @@ export const signin = async (req, res) => {
   });
   if (!user)
     return res.status(400).json({
-      message: "User Not Exist"
+      message: "User does not exist!"
     });
 
   const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch)
+  if (!isMatch) {
     return res.status(400).json({
-      message: "Incorrect Password !"
+      message: "Incorrect password!"
     });
-
+  }
   const payload = {
     user: {
       id: user.id
     }
   };
 
-  jwt.sign(
-    payload,
-    "herbs",
-    {
-      expiresIn: 3600
-    },
-    (err, token) => {
-      if (err) throw err;
-      res.status(200).json({
-        token
-      });
-    }
-  );
+  signJWT(payload, res)
 };

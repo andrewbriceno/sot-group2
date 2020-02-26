@@ -33,7 +33,6 @@ app.use('/api/users/', usersRouter);
 app.use('/api/admin/', adminRouter);
 
 app.all('/*', (req, res) => {
-
     res.sendFile(path.resolve("client/index.html"));
 });
 const PORT = process.env.PORT || 3000;
