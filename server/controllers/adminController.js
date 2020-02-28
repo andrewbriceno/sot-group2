@@ -1,10 +1,11 @@
 /* Dependencies */
 import mongoose from 'mongoose';
 import Product from '../models/ProductModel.js';
+import Glossary from '../models/GlossaryModel.js';
+import User from '../models/UserModel.js';
 import config from '../config/config.js';
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import Glossary from '../models/GlossaryModel.js';
 
 function initMongoose() {
   mongoose.connect(config.db.uri, {useNewUrlParser: true});
@@ -33,24 +34,43 @@ export const addGlossary = async (req, res) => {
     title: req.body.title,
     definition: req.body.definition,
     usage: req.body.usage,
-    published: req.body.published,
+    ingredients: req.body.ingredients,
+    is_published: req.body.is_published,
   });
   save_glossary.save(function (err, save_glossary) {
     console.log('saved =>', save_glossary);
     return res.status(200).json({
-      message: 'Successfully added Glossary!'
+      glossary: save_glossary
     });
   });
 };
 
 export const getGlossary = async (req, res) => {
-  const id = req.params.glossaryID;
-  let glossary = await Glossary.findById(id);
+  initMongoose()
+  const title = req.params.title;
+  let glossary = await Glossary.find({title: title});
   if(!glossary) {
     return res.status(400).json({
-      message: 'Glossary does not exist!'
+      message: 'Glossary does not exist!',
+      id_given: id
     });
   } else {
     return res.status(200).json(glossary);
   }
+}
+
+export const deleteUser = async (req, res) => {
+  const email = req.body.email
+  User.findByIdAndRemove({email: email}, function(err, result) {
+    if (err) {
+      console.log("Error deleting", err);
+      res.status(404).json({
+        err
+      });
+      throw err;
+    }
+    res.status(200).json({
+      result
+    });
+  });
 }

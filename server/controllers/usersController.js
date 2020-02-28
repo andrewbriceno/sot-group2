@@ -23,6 +23,14 @@ function signJWT(payload, res) {
   );
 }
 
+function buildPayload(user) {
+  return {
+    user: {
+      id: user.id
+    }
+  }
+}
+
 export const signup = async (req, res) => {
   initMongoose()
   let save_user
@@ -39,12 +47,7 @@ export const signup = async (req, res) => {
     console.log('saved =>', save_user);
   });
 
-  const payload = {
-    user: {
-      id: save_user.id
-    }
-  };
-
+  const payload = buildPayload(user)
   signJWT(payload, res)
 };
 
@@ -67,11 +70,6 @@ export const signin = async (req, res) => {
       message: "Incorrect password!"
     });
   }
-  const payload = {
-    user: {
-      id: user.id
-    }
-  };
-
+  const payload = buildPayload(user)
   signJWT(payload, res)
 };
