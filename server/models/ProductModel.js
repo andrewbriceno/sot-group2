@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const ProductSchema = mongoose.Schema({
   name: { type: String, required: true },
   published: { type: Boolean, required: true, default: false },
-  for_premium: { type: Boolean, required: true },
+  is_premium: { type: Boolean, required: true },
   description: { type: String, required: true },
   createdAt: { type: Date, default: Date.now()}
 });
