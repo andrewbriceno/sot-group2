@@ -23,6 +23,22 @@ function signJWT(payload, res) {
   );
 }
 
+export const deleteUser = async (req, res) => {
+  const email = req.body.email
+  User.findByIdAndRemove({email: email}, function(err, result) {
+    if (err) {
+      console.log("Error deleting", err);
+      res.status(404).json({
+        err
+      });
+      throw err;
+    }
+    res.status(200).json({
+      result
+    });
+  });
+}
+
 export const signup = async (req, res) => {
   initMongoose()
   let save_user
