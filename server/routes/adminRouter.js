@@ -3,10 +3,13 @@ import express from 'express'; //refers to Express the middleware helper for Nod
 const adminRouter = express.Router();
 
 //product routes
-adminRouter.post('/addproduct', admin.addProduct);
+adminRouter.post('/add_product', admin.addProduct);
 
 //glossary routes
-adminRouter.post('/addglossary', admin.addGlossary);
-adminRouter.get('/getglossary/:glossaryID', admin.getGlossary);
+adminRouter.post('/add_glossary', admin.addGlossary);
+adminRouter.get('/get_glossary/:title', admin.getGlossary);
+
+//remove user
+adminRouter.post('/delete_user', admin.deleteUser);
 
 export default adminRouter;

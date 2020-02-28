@@ -23,20 +23,12 @@ function signJWT(payload, res) {
   );
 }
 
-export const deleteUser = async (req, res) => {
-  const email = req.body.email
-  User.findByIdAndRemove({email: email}, function(err, result) {
-    if (err) {
-      console.log("Error deleting", err);
-      res.status(404).json({
-        err
-      });
-      throw err;
+function buildPayload(user) {
+  return {
+    user: {
+      id: user.id
     }
-    res.status(200).json({
-      result
-    });
-  });
+  }
 }
 
 export const signup = async (req, res) => {
@@ -55,12 +47,7 @@ export const signup = async (req, res) => {
     console.log('saved =>', save_user);
   });
 
-  const payload = {
-    user: {
-      id: save_user.id
-    }
-  };
-
+  const payload = buildPayload(user)
   signJWT(payload, res)
 };
 
@@ -83,11 +70,6 @@ export const signin = async (req, res) => {
       message: "Incorrect password!"
     });
   }
-  const payload = {
-    user: {
-      id: user.id
-    }
-  };
-
+  const payload = buildPayload(user)
   signJWT(payload, res)
 };
