@@ -49,8 +49,13 @@ export const updateGlossary = async (req, res) => {
   initMongoose()
   const title = req.params.title;
   let glossary = await Glossary.findOneAndUpdate({title: title}, req.body, {new: true}, (err, data) => {
-    if (err) {
-      res.status(400).json({message: err.message});
+    if(err) {
+      res.status(400).json({err});
+      throw err;
+    } else if(!data) {
+      res.status(400).json({
+        message: 'Glossary does not exist!',
+      });
     } else {
       res.status(200).json(data)
     }
@@ -60,16 +65,41 @@ export const updateGlossary = async (req, res) => {
 export const getGlossary = async (req, res) => {
   initMongoose()
   const title = req.params.title;
-  let glossary = await Glossary.find({title: title});
-  if(!glossary) {
+  let glossary = await Glossary.findOne({title: title}, (err, data) => {
+    if(!data) {
+      res.status(400).json({
+        message: 'Glossary does not exist!',
+      });
+    } else {
+      res.status(200).json(data);
+    }
+  });
+  /*if(!glossary) {
     return res.status(400).json({
       message: 'Glossary does not exist!',
       id_given: id
     });
   } else {
     return res.status(200).json(glossary);
-  }
+  }*/
 }
+
+export const deleteGlossary = async (req, res) => {
+  initMongoose()
+  const title = req.params.title;
+  let glossary = await Glossary.findOneAndDelete({title: title}, (err, data) => {
+    if(err) {
+      res.status(400).json({err});
+      throw err;
+    } else if(!data) {
+      res.status(400).json({
+        message: 'Glossary does not exist!',
+      });
+    } else {
+      res.status(200).json(data);
+    }
+  });
+};
 
 export const deleteUser = async (req, res) => {
   const email = req.body.email
