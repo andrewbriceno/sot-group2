@@ -82,7 +82,14 @@ export const getGlossary = async (req, res) => {
   } else {
     return res.status(200).json(glossary);
   }*/
-}
+};
+
+export const getGlossaryList = async (req, res) => {
+  initMongoose()
+  Glossary.find({}, (err, data) => {
+    res.status(200).json(data);
+  });
+};
 
 export const deleteGlossary = async (req, res) => {
   initMongoose()

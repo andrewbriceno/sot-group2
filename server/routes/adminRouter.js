@@ -9,6 +9,7 @@ adminRouter.post('/add_product', admin.addProduct);
 adminRouter.post('/add_glossary', admin.addGlossary);
 adminRouter.put('/update_glossary/:title', admin.updateGlossary);
 adminRouter.get('/get_glossary/:title', admin.getGlossary);
+adminRouter.get('/get_glossary/', admin.getGlossaryList);
 adminRouter.delete('/delete_glossary/:title', admin.deleteGlossary);
 
 //remove user
