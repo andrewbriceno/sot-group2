@@ -48,7 +48,7 @@ export const addGlossary = async (req, res) => {
 export const updateGlossary = async (req, res) => {
   initMongoose()
   const title = req.params.title;
-  let glossary = await Glossary.findOneAndUpdate({title: title}, req.body, {new: true}, (err, data) => {
+  Glossary.findOneAndUpdate({title: title}, req.body, {new: true}, (err, data) => {
     if(err) {
       res.status(400).json({err});
       throw err;
@@ -65,7 +65,7 @@ export const updateGlossary = async (req, res) => {
 export const getGlossary = async (req, res) => {
   initMongoose()
   const title = req.params.title;
-  let glossary = await Glossary.findOne({title: title}, (err, data) => {
+  Glossary.findOne({title: title}, (err, data) => {
     if(!data) {
       res.status(400).json({
         message: 'Glossary does not exist!',
@@ -94,7 +94,7 @@ export const getGlossaryList = async (req, res) => {
 export const deleteGlossary = async (req, res) => {
   initMongoose()
   const title = req.params.title;
-  let glossary = await Glossary.findOneAndDelete({title: title}, (err, data) => {
+  Glossary.findOneAndDelete({title: title}, (err, data) => {
     if(err) {
       res.status(400).json({err});
       throw err;
