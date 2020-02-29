@@ -45,6 +45,18 @@ export const addGlossary = async (req, res) => {
   });
 };
 
+export const updateGlossary = async (req, res) => {
+  initMongoose()
+  const title = req.params.title;
+  let glossary = await Glossary.findOneAndUpdate({title: title}, req.body, {new: true}, (err, data) => {
+    if (err) {
+      res.status(400).json({message: err.message});
+    } else {
+      res.status(200).json(data)
+    }
+  });
+};
+
 export const getGlossary = async (req, res) => {
   initMongoose()
   const title = req.params.title;
@@ -61,7 +73,7 @@ export const getGlossary = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   const email = req.body.email
-  User.findByIdAndRemove({email: email}, function(err, result) {
+  User.findOneAndRemove({email: email}, function(err, result) {
     if (err) {
       console.log("Error deleting", err);
       res.status(404).json({
