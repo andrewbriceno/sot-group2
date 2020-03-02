@@ -9,6 +9,13 @@ adminRouter.get('/get_product/:name', admin.getProduct);
 adminRouter.get('/get_product/', admin.getProductList);
 adminRouter.delete('/delete_product/:name', admin.deleteProduct);
 
+//recipe routes
+adminRouter.post('/add_recipe', admin.addRecipe);
+adminRouter.put('/update_recipe/:name', admin.updateRecipe);
+adminRouter.get('/get_recipe/:name', admin.getRecipe);
+adminRouter.get('/get_recipe/', admin.getRecipeList);
+adminRouter.delete('/delte_recipe/:name', admin.deleteRecipe);
+
 //glossary routes
 adminRouter.post('/add_glossary', admin.addGlossary);
 adminRouter.put('/update_glossary/:title', admin.updateGlossary);
