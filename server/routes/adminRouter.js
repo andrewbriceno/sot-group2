@@ -4,6 +4,10 @@ const adminRouter = express.Router();
 
 //product routes
 adminRouter.post('/add_product', admin.addProduct);
+adminRouter.put('/update_product/:name', admin.updateProduct);
+adminRouter.get('/get_product/:name', admin.getProduct);
+adminRouter.get('/get_product/', admin.getProductList);
+adminRouter.delete('/delete_product/:name', admin.deleteProduct);
 
 //glossary routes
 adminRouter.post('/add_glossary', admin.addGlossary);

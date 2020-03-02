@@ -22,7 +22,7 @@ export const addProduct = async (req, res) => {
     body_part: req.body.body_part,
     description: req.body.description,
     for_premium: req.body.for_premium,
-    published: req.body.published,
+    is_published: req.body.is_published,
   });
   save_product.save(function (err, save_product) {
     if(err) {
@@ -30,6 +30,61 @@ export const addProduct = async (req, res) => {
     } else {
       console.log('saved =>', save_product);
       return res.status(200).json(save_product);
+    }
+  });
+};
+
+export const updateProduct = async (req, res) => {
+  initMongoose()
+  const name = req.params.name;
+  Product.findOneAndUpdate({name: name}, req.body, {new: true} ,(err, data) => {
+    if(err) {
+      res.status(400).json({err});
+      throw err;
+    } else if (!data) {
+      res.status(500).json({
+        message: "Product does not exist!"
+      });
+    } else {
+      res.status(200).json(data);
+    }
+  });
+};
+
+export const getProduct = async (req, res) => {
+  initMongoose()
+  const name = req.params.name;
+  Product.findOne({name: name}, (err, data) => {
+    if(!data) {
+      res.status(400).json({
+        message: 'Product does not exist!',
+      });
+    } else {
+      res.status(200).json(data);
+    }
+  });
+};
+
+export const getProductList = async (req, res) => {
+  initMongoose()
+  Product.find({}, (err, data) => {
+    res.status(200).json(data);
+  });
+};
+
+export const deleteProduct = async (req, res) => {
+  initMongoose()
+  const name = req.params.name;
+  Product.findOneAndDelete({name: name}, (err, data) => {
+    if(err) {
+      res.status(400).json({err});
+      throw err;
+    } else if(!data) {
+      res.status(400).json({
+        message: 'Product does not exist!',
+      });
+    } else {
+      res.status(200).json(data);
     }
   });
 };

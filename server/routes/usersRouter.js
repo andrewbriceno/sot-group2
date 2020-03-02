@@ -6,6 +6,11 @@ const usersRouter = express.Router();
 usersRouter.post('/signup', users.signup);
 usersRouter.post('/signin', users.signin);
 
+//product routes
+usersRouter.get('/get_product/:name', users.getProduct);
+usersRouter.get('/get_product/', users.getProductList);
+
+
 //glossary routes
 usersRouter.get('/get_glossary/:title', users.getGlossary);
 usersRouter.get('/get_glossary/', users.getGlossaryList);
