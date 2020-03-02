@@ -18,12 +18,19 @@ export const addProduct = async (req, res) => {
   let save_product
   save_product = new Product({
     name: req.body.name,
+    ailment: req.body.ailment,
+    body_part: req.body.body_part,
     description: req.body.description,
     for_premium: req.body.for_premium,
     published: req.body.published,
   });
   save_product.save(function (err, save_product) {
-    console.log('saved =>', save_product);
+    if(err) {
+      return res.status(400).json(err);
+    } else {
+      console.log('saved =>', save_product);
+      return res.status(200).json(save_product);
+    }
   });
 };
 
@@ -38,10 +45,12 @@ export const addGlossary = async (req, res) => {
     is_published: req.body.is_published,
   });
   save_glossary.save(function (err, save_glossary) {
-    console.log('saved =>', save_glossary);
-    return res.status(200).json({
-      glossary: save_glossary
-    });
+    if(err) {
+      return res.status(400).json(err);
+    } else {
+      console.log('saved =>', save_glossary);
+      return res.status(200).json(save_glossary);
+    }
   });
 };
 
