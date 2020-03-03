@@ -10,6 +10,9 @@ usersRouter.post('/signin', users.signin);
 usersRouter.get('/get_product/:name', users.getProduct);
 usersRouter.get('/get_product/', users.getProductList);
 
+//recipe routes
+usersRouter.get('/get_recipe/:name', users.getRecipe);
+usersRouter.get('/get_recipe/', users.getRecipeList);
 
 //glossary routes
 usersRouter.get('/get_glossary/:title', users.getGlossary);
