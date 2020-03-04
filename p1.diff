@@ -1,0 +1,247 @@
+diff --git a/arch/x86/entry/syscalls/syscall_32.tbl b/arch/x86/entry/syscalls/syscall_32.tbl
+index 3cf7b533b..6fb53f891 100644
+--- a/arch/x86/entry/syscalls/syscall_32.tbl
++++ b/arch/x86/entry/syscalls/syscall_32.tbl
+@@ -398,3 +398,5 @@
+ 384	i386	arch_prctl		sys_arch_prctl			__ia32_compat_sys_arch_prctl
+ 385	i386	io_pgetevents		sys_io_pgetevents		__ia32_compat_sys_io_pgetevents
+ 386	i386	rseq			sys_rseq			__ia32_sys_rseq
++387     i386	get_tag			sys_get_tag
++388     i386    set_tag                 sys_set_tag
+diff --git a/arch/x86/entry/syscalls/syscall_64.tbl b/arch/x86/entry/syscalls/syscall_64.tbl
+index f0b1709a5..d248b6d49 100644
+--- a/arch/x86/entry/syscalls/syscall_64.tbl
++++ b/arch/x86/entry/syscalls/syscall_64.tbl
+@@ -343,6 +343,12 @@
+ 332	common	statx			__x64_sys_statx
+ 333	common	io_pgetevents		__x64_sys_io_pgetevents
+ 334	common	rseq			__x64_sys_rseq
++335	common	get_tag			__x64_sys_get_tag
++336     common  set_tag                 __x64_sys_set_tag
++
++# 335 and 336 added by Vinicius Martinson on 03/01/2020
++# get a tag from a process and set a tag to a process, given process id
++
+ 
+ #
+ # x32-specific system call numbers start at 512 to avoid cache impact
+diff --git a/include/linux/sched.h b/include/linux/sched.h
+index bc6026cdb..66fcf5a86 100644
+--- a/include/linux/sched.h
++++ b/include/linux/sched.h
+@@ -780,6 +780,9 @@ struct task_struct {
+ 
+ 	/* PID/PID hash table linkage. */
+ 	struct pid			*thread_pid;
++	// u32 tag added by Vinicius Martinson on 03/01/2020
++	// All process now carry a tag (32 bits long)
++	u32				tag;
+ 	struct hlist_node		pid_links[PIDTYPE_MAX];
+ 	struct list_head		thread_group;
+ 	struct list_head		thread_node;
+diff --git a/include/linux/syscalls.h b/include/linux/syscalls.h
+index 257cccba3..ea63908d2 100644
+--- a/include/linux/syscalls.h
++++ b/include/linux/syscalls.h
+@@ -1314,5 +1314,9 @@ static inline unsigned int ksys_personality(unsigned int personality)
+ 
+ 	return old;
+ }
+-
++// Functions added by Vinicius Martinson on 03/01/2020
++// Get tags from processes, given process id
++// Set tags to process given process id
++asmlinkage int sys_get_tag(int);
++asmlinkage int sys_set_tag(int, int);
+ #endif
+diff --git a/init/main.c b/init/main.c
+index 004c75de5..747338f15 100644
+--- a/init/main.c
++++ b/init/main.c
+@@ -1068,7 +1068,9 @@ static int __ref kernel_init(void *unused)
+ 	numa_default_policy();
+ 
+ 	rcu_end_inkernel_boot();
+-
++	pr_info("\n");
++	pr_info("##### Vinicius Martinson (UFID: 8761-3468) God is good! #####");
++	pr_info("\n");
+ 	if (ramdisk_execute_command) {
+ 		ret = run_init_process(ramdisk_execute_command);
+ 		if (!ret)
+diff --git a/kernel/Makefile b/kernel/Makefile
+index 4d922ad29..ecf0078a4 100644
+--- a/kernel/Makefile
++++ b/kernel/Makefile
+@@ -43,6 +43,7 @@ obj-y += irq/
+ obj-y += rcu/
+ obj-y += livepatch/
+ obj-y += dma/
++obj-y += tag/
+ 
+ obj-$(CONFIG_CHECKPOINT_RESTORE) += kcmp.o
+ obj-$(CONFIG_FREEZER) += freezer.o
+diff --git a/kernel/pid.c b/kernel/pid.c
+index 20881598b..c457bf783 100644
+--- a/kernel/pid.c
++++ b/kernel/pid.c
+@@ -435,6 +435,15 @@ pid_t __task_pid_nr_ns(struct task_struct *task, enum pid_type type,
+ }
+ EXPORT_SYMBOL(__task_pid_nr_ns);
+ 
++//int _gettag(int nr)
++//{
++	//struct pid *pid;
++	//pid = find_vpid(nr);
++	//pid->numbers[0].tag = 77;
++  //      return pid->numbers[0]->.tag;
++//}
++//EXPORT_SYMBOL(_gettag);
++
+ struct pid_namespace *task_active_pid_ns(struct task_struct *tsk)
+ {
+ 	return ns_of_pid(task_pid(tsk));
+diff --git a/kernel/tag/Makefile b/kernel/tag/Makefile
+new file mode 100644
+index 000000000..1da1cce77
+--- /dev/null
++++ b/kernel/tag/Makefile
+@@ -0,0 +1 @@
++obj-y := tag.o
+diff --git a/kernel/tag/tag.c b/kernel/tag/tag.c
+new file mode 100644
+index 000000000..a7c3063e8
+--- /dev/null
++++ b/kernel/tag/tag.c
+@@ -0,0 +1,131 @@
++#include <linux/cred.h>
++#include <linux/kernel.h>
++#include <linux/sched.h>
++#include <linux/syscalls.h>
++
++#define ERROR -1
++
++int checkTask(struct task_struct *task) {
++  if (task == NULL) {
++    pr_info("Cannot find a process with given PID");
++    return ERROR;
++  }
++}
++
++int levelForbidden(void) {
++  pr_info("User is not superuser, cannot set new_tag or increase level");
++  return ERROR;
++}
++
++int resetBit(unsigned int new_tag, struct task_struct *task) {
++  unsigned int saveLevel = task->tag;
++  saveLevel = (saveLevel & 3);
++  unsigned int tag_bits = ((task->tag >> 2) & (new_tag >> 2));
++  tag_bits = (tag_bits << 2) + saveLevel;
++  tag_bits = (tag_bits & 2147483647);
++  task->tag = tag_bits;
++  return task->tag;
++}
++
++int changeLevel(unsigned int new_tag, struct task_struct *task) {
++  printk("AT changeLevel()\n");
++  if ((task->tag & 3) == 1) {
++    if ((new_tag & 3) == 0) {
++      int reset_tag = (task->tag >> 2);
++      task->tag = (task->tag << 2); // >> 2 and then << 2
++      return task->tag;
++    } else levelForbidden();
++  }
++  else if ((task->tag & 3) == 2) {
++    if ((new_tag & 3) == 0) {
++      int reset_tag = (task->tag >> 2);
++      task->tag = (task->tag << 2); // >> 2 and then << 2
++      return task->tag;
++    }
++    else if ((new_tag & 3) == 1) {
++      int reset_tag = (task->tag >> 2);
++      task->tag = (task->tag << 2) + 1;
++      return task->tag;
++    } else levelForbidden();
++  }
++  else if ((task->tag & 3) == 3) {
++    if ((new_tag & 3) == 0) {
++      int reset_tag = (task->tag >> 2);
++      task->tag = (task->tag << 2);
++      return task->tag;
++    }
++    else if ((new_tag & 3) == 1) {
++      int reset_tag = (task->tag >> 2);
++      task->tag = (task->tag << 2) + 1;
++      return task->tag;
++    }
++    else if ((new_tag & 3) == 2) {
++      int reset_tag = (task->tag >> 2);
++      task->tag = (task->tag << 2) + 2;
++      return task->tag;
++    } else levelForbidden();
++  } else return ERROR;
++  // } else return task->tag;
++  return ERROR;
++}
++
++SYSCALL_DEFINE1(get_tag, int, pid) {
++  if (pid < 0) {
++    pr_info("PID must be non-negative");
++    return ERROR;
++  }
++  struct task_struct *task;
++  task = pid_task(find_vpid(pid), PIDTYPE_PID);
++  int tag;
++
++  // If process is not found.
++  checkTask(task);
++
++  tag = task->tag;
++	pr_info("GET: Tag of process %d is %d\n",pid, tag);
++	return tag;
++}
++
++SYSCALL_DEFINE2(set_tag, int, pid, unsigned int, new_tag) {
++  if (pid < 0 || new_tag < 0) {
++    pr_info("PID or tag must be non-negative");
++    return ERROR;
++  }
++  if (new_tag >= 2147483648) return ERROR;
++  struct task_struct *task;
++  task = pid_task(find_vpid(pid), PIDTYPE_PID);
++
++  // If process is not found.
++  checkTask(task);
++
++  //SUDO
++  if (current_cred()->uid.val == 0) {
++    pr_info("SET: Previous tag of process %d is %d | ",pid, task->tag);
++    new_tag = (new_tag & 2147483647);
++    task->tag = new_tag;
++  	pr_info("New tag of process %d is %d\n",pid, task->tag);
++  	return task->tag;
++  } else {
++    int DATA = 0;
++    printk("PID: %d | old_tag: %d | new_tag: %d |\n", pid, task->tag, new_tag);
++    int current_level = (task->tag & 3);
++    int given_level = (new_tag & 3);
++    pr_info("current_level = %d | given_level = %d\n", current_level, given_level);
++    if (get_current()->pid == pid) {
++      if (((new_tag >> 2) > (task->tag >> 2)) || (given_level > current_level)) {
++        DATA = ERROR;
++      } else {
++        DATA = changeLevel(new_tag, task);
++      }
++      if ((new_tag >> 2) < (task->tag >> 2)) {
++        DATA = resetBit(new_tag, task);
++      } else {
++        DATA = ERROR;
++      }
++    } else {
++      DATA = ERROR;
++    }
++    return DATA;
++  }
++
++}

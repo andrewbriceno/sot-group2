@@ -49,11 +49,11 @@ export const getGlossary = async (req, res) => {
   initMongoose()
   const title = req.params.title;
   let glossary = await Glossary.find({title: title});
-  if(!glossary) {
+  if(glossary == []) {
     return res.status(400).json({
       message: 'Glossary does not exist!',
       id_given: id
-    });
+    })
   } else {
     return res.status(200).json(glossary);
   }

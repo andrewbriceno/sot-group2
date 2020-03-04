@@ -1,6 +1,9 @@
 # Short On Time ™
 ## Website:
 https://short-on-time.herokuapp.com/
+## Code Pattern:
+<p>Function: camelCase()
+<p>Parameters: /:under_score
 ## Notes, Backlog, and More:
 <p>Notes from initial meeting (02/18): https://docs.google.com/document/d/1CVeDTN6VOdUZ40mTscEKDfuYHaGvAXayfUZkCBnGxt0/edit
 <p>Trello: https://trello.com/shortontime/home
