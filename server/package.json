@@ -8,9 +8,7 @@
     "start": "node --experimental-modules server.js"
   },
   "authors": [
-    "Jonathan Conlin",
-    "Dakota Rennemann",
-    "Bao Nyguen"
+    "Short On Time"
   ],
   "license": "MIT",
   "dependencies": {
