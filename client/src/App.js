@@ -1,14 +1,21 @@
 import React from 'react';
-import logo from './considerherbs2500x579.jpg';
-import NavBar from "./components/NavBar";
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Home from "./components/Home"
+import About from "./components/AboutPage"
 import './App.css';
 
 function App() {
     return (
-        <div className="App">
-            <NavBar />
-            <p>Index page</p>
-        </div>
+        <BrowserRouter>
+            <div>
+                <Switch>
+                    <Route path="/" component={Home} exact/>
+                    <Route path="/home" component={Home}/>
+                    <Route path="/about" component={About}/>
+                <Route component={Error}/>
+               </Switch>
+            </div> 
+        </BrowserRouter>
     );
 }
 

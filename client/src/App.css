@@ -19,3 +19,7 @@
   margin-right: auto;
   text-align: center;
 }
+
+.ui.menu .item::before{
+    width: 0px;
+}
