@@ -19,19 +19,19 @@ function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link className="item" href="/">
+            <Nav.Link className="item" href="/didyouknow">
               Did You Know?
             </Nav.Link>
-            <Nav.Link className="item" href="/">
+            <Nav.Link className="item" href="/forum">
               Forum
             </Nav.Link>
-            <Nav.Link className="item" href="/">
+            <Nav.Link className="item" href="/glossary">
               Glossary
             </Nav.Link>
             <Nav.Link className="item" href="/about">
               About
             </Nav.Link>
-            <Nav.Link className="item" href="/">
+            <Nav.Link className="item" href="/schedule">
               Schedule
             </Nav.Link>
             <Nav.Link className="item" href="/login">
