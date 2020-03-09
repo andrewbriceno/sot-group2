@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import logo from "../considerherbs2500x579.jpg";
 // import { Menu } from 'semantic-ui-react';
 import Navbar from "react-bootstrap/Navbar";
@@ -7,7 +7,17 @@ import Image from "react-bootstrap/Image";
 // import { Link } from "react-router-dom";
 import "../App.css";
 
+
+
 function NavBar() {
+  const [redirect, setRedirect] = useState(false);
+
+  function navigateHome(){
+    if(true){
+      window.location.assign("/");
+    }
+  }
+
   return (
     <nav>
       {/* <Navbar>
@@ -15,7 +25,7 @@ function NavBar() {
       </Navbar> */}
 
       <Navbar bg="light" expand="lg">
-        <Image src={logo} alt="logo" href="/" width="20%" fluid rounded />
+        <Image src={logo} alt="logo" href="/home" width="20%" fluid rounded onClick={() => navigateHome()}/>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
