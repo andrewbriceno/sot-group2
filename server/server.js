@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import config from './config/config.js';
 import usersRouter from './routes/usersRouter.js';
 import adminRouter from './routes/adminRouter.js';
+import cors from 'cors';
 
 //connect to database
 mongoose.connect(config.db.uri, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}).then(() => {
@@ -26,14 +27,22 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 /* serve static files - see http://expressjs.com/en/starter/static-files.html */
-app.use('/', express.static('./../../client'));
-app.use(express.static('client'))
+//app.use('/', express.static('./../../client'));
+//app.use(express.static('client'))
+
+//https://enable-cors.org/server_expressjs.html
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3001"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+app.use(cors());
 
 app.use('/api/users/', usersRouter);
 app.use('/api/admin/', adminRouter);
 
 app.all('/*', (req, res) => {
-    res.sendFile(path.resolve("client/index.html"));
+    res.status(201).json({message: "nothing here!"});
 });
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`App now listening on port ${PORT}`));

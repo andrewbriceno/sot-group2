@@ -3,5 +3,6 @@
     ".js": "jest-esm-transformer"
   },
   "preset": "@shelf/jest-mongodb",
-  "testEnvironment": "node"
+  "testEnvironment": "node",
+  "disableHostCheck": true
 }
