@@ -1,5 +1,6 @@
 import * as users from '../controllers/usersController.js';
 import express from 'express'; //refers to Express the middleware helper for Node.js
+import validateToken from '../utils/auth.js';
 const usersRouter = express.Router();
 
 //logon routes
@@ -7,15 +8,15 @@ usersRouter.post('/signup', users.signup);
 usersRouter.post('/signin', users.signin);
 
 //product routes
-usersRouter.get('/get_product/:name', users.getProduct);
-usersRouter.get('/get_product', users.getProductList);
+usersRouter.route('/get_product/:name').get(validateToken, users.getProduct);
+usersRouter.route('/get_product').get(validateToken, users.getProductList);
 
 //recipe routes
-usersRouter.get('/get_recipe/:name', users.getRecipe);
-usersRouter.get('/get_recipe', users.getRecipeList);
+usersRouter.route('/get_recipe/:name').get(validateToken, users.getRecipe);
+usersRouter.route('/get_recipe').get(validateToken, users.getRecipeList);
 
 //glossary routes
-usersRouter.get('/get_glossary/:title', users.getGlossary);
-usersRouter.get('/get_glossary', users.getGlossaryList);
+usersRouter.route('/get_glossary/:title').get(validateToken, users.getGlossary);
+usersRouter.route('/get_glossary').get(validateToken, users.getGlossaryList);
 
 export default usersRouter;
