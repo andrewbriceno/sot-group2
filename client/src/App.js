@@ -7,6 +7,7 @@ import Forum from "./components/Forum"
 import Schedule from "./components/SchedulePage"
 import Glossary from "./components/Glossary"
 import editGlossary from './components/editGlossary'
+import addGlossary from './components/addGlossary'
 import Login from "./components/LoginPage"
 import Admin from "./components/AdminPanel"
 import './App.css';
@@ -28,6 +29,7 @@ function App() {
                     <Route path="/admin" component={Admin}/>
                     <Route path="/admingloss" component={AdminGlossary}/>
                     <Route path='/editGloss' component={editGlossary}/>
+                    <Route path="/addGloss" component={addGlossary}/>
                 <Route component={Error}/>
                </Switch>
             </div> 

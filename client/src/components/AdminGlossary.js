@@ -67,7 +67,7 @@ class AdminGlossary extends React.Component {
             </Col>
 
             <Col xs={6} md={4}>
-              <Button variant="secondary">Add Term</Button>
+              <Button variant="secondary" href="/addGloss">Add Term</Button>
             </Col>
           </Row>
         </Container>
