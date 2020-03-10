@@ -13,7 +13,8 @@ var config = {
 }
 
 function deleteGloss(title) {
-  axios.delete('http://localhost:3001/api/admin/delete_glossary/' + title, config);
+  axios.delete('http://localhost:3001/api/admin/delete_glossary/' + title, config)
+    .then(console.log('successfully deleted ' + title));
 }
 
 class AdminGlossary extends React.Component {
@@ -83,10 +84,10 @@ class AdminGlossary extends React.Component {
               </tr>
               {this.state.items.map(g => {
                 return(
-                  <tr key={g.id} name={g.title}>
+                  <tr key={g._id} name={g.title}>
                     <td>{g.title}</td>
                     <td>{g.usage}</td>
-                    <a class="btn btn-success" href="/editGloss" onClick="location.href=this.href+'?key='+g.id;return false;">EDIT</a>
+                    <a class="btn btn-success" href={"/editGloss"+'?key='+g._id+"&title="+g.title}>EDIT</a>
                     <button class="btn btn-danger" onClick={() => deleteGloss(g.title)}>DELETE</button>
                   </tr>
                 )
