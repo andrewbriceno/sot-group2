@@ -5,8 +5,8 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node server/server.js",
-    "heroku-postbuild": "cd client && rm -rf node_modules && npm install && npm start"
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "authors": [
     "Short On Time"
@@ -24,20 +24,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.2",
     "morgan": "^1.9.1",
-    "request": "^2.88.2",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.19.2",
-    "bootstrap": "^4.4.1",
-    "bootstrap-icons": "^1.0.0-alpha2",
-    "react": "^16.13.0",
-    "react-bootstrap": "^1.0.0-beta.17",
-    "react-dom": "^16.13.0",
-    "react-icons": "^3.9.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.0",
-    "semantic-ui-react": "^0.88.2"
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "@shelf/jest-mongodb": "^1.1.3",
