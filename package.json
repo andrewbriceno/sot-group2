@@ -9,7 +9,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "install": "npm i && cd client && npm i && cd ../server && npm i",
+    "install": "cd client && npm i && cd ../server && npm i",
     "start-server": "cd server && npm start",
     "start-client": "cd client && npm start",
     "start": "npm-run-all --parallel start-server start-client",
