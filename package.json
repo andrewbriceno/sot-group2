@@ -5,7 +5,8 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node --experimental-modules server.js"
+    "start": "npm run start-client",
+    "start-client": "cd client && npm start"
   },
   "authors": [
     "Short On Time"
