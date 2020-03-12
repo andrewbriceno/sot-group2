@@ -9,7 +9,7 @@ usersRouter.post('/signin', users.signin);
 
 //product routes
 usersRouter.route('/get_product/:name').get(validateToken, users.getProduct);
-usersRouter.route('/get_product').get(validateToken, users.getProductList);
+usersRouter.route('/get_product').get(users.getProductList);
 
 //recipe routes
 usersRouter.route('/get_recipe/:name').get(validateToken, users.getRecipe);
