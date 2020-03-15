@@ -31,13 +31,13 @@ class Home extends React.Component {
       </div>
 
 
-      <div className="site-navbar-wrap js-site-navbar bg-white" style={{position: "fixed"}}>
+      <div className="site-navbar-wrap js-site-navbar bg-white" style={{position: "fixed", boxShadow: "0 5px 5px rgba(0,0,0,0.2)"}}>
 
         <div className="container">
           <div className="site-navbar bg-light">
             <div className="row align-items-center">
               <div className="col-2">
-                <h2 className="mb-0 site-logo"><a href="index.html" className="font-weight-bold text-uppercase">Consider Herbs</a></h2>
+                <h2 className="mb-0 site-logo"><a href="/"><img src="images/logo.jpg" width="250" height="55"/></a></h2>
               </div>
               <div className="col-10">
                 <nav className="site-navigation text-right" role="navigation">
