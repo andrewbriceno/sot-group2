@@ -9,8 +9,8 @@
   },
   "main": "server.js",
   "scripts": {
-    "start": "concurrently \"node server.js\" \"cd client2 && rm -rf node_modules && npm install && npm run build\"",
-    "parallel-start": "cd .. && node server.js",
+    "start": "node server.js",
+    "heroku-postbuild": "cd client2 && rm -rf node_modules && npm install && npm run build",
     "start-dev": "concurrently \"node server\" \"cd client2 && npm start\""
   },
   "authors": [
