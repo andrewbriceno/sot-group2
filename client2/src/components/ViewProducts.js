@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import config from './config.js';
 
 export default class ViewProducts extends React.Component {
 
@@ -8,7 +9,7 @@ export default class ViewProducts extends React.Component {
     }
 
     componentDidMount() {
-      axios.get(`http://localhost:3001/api/users/get_product`)
+      axios.get(`http://localhost:${config.server_port}/api/users/get_product`)
         .then(res => {
           const products = res.data;
           this.setState({ products });
