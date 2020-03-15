@@ -1,7 +1,9 @@
 import React from 'react';
-import ViewProducts from './components/ViewProducts';
-import logo from './logo.svg';
-import './App.css';
+import ViewProducts from '../components/ViewProducts';
+import logo from '../logo.svg';
+// import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
+import '../App.css';
 
 class Home extends React.Component {
   render() {
@@ -72,6 +74,7 @@ class Home extends React.Component {
             <div className="row align-items-center justify-content-center">
               <div className="col-md-6 text-center" data-aos="fade">
                 <h1 className="font-secondary  font-weight-bold text-uppercase">Welcome to Consider Herbs</h1>
+                <Link to="/about">ROUTING IN REACT</Link>
                 <ViewProducts/>
               </div>
             </div>
