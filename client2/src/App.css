@@ -2,6 +2,20 @@
   text-align: center;
 }
 
+.btn-primary {
+  background-color: forestgreen;
+  border-color: green;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:visited, .btn-primary:active   {
+  background-color: forestgreen;
+  border-color: green;
+}
+
+.text-primary {
+    color: forestgreen!important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

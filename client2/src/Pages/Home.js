@@ -1,5 +1,6 @@
 import React from 'react';
 import ViewProducts from '../components/ViewProducts';
+import LoginButton from '../components/LoginButton';
 import logo from '../logo.svg';
 // import { Link } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -57,7 +58,7 @@ class Home extends React.Component {
                       </li>
                       <li><a href="services.html">Services</a></li>
                       <li><a href="contact.html">Contact</a></li>
-                      <li><a href="contact.html"><span className="d-inline-block bg-primary text-white btn btn-primary">Login</span></a></li>
+                      <li><LoginButton /></li>
                     </ul>
                   </div>
                 </nav>
