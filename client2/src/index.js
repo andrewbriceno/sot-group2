@@ -6,15 +6,6 @@ import './index.css';
 import App from './App';
 import routes from './routes'
 import * as serviceWorker from './serviceWorker';
-import AboutPage from './components/About';
-
-
-// ReactDOM.render(<App />, document.getElementById('root'));
-
-// ReactDOM.render(
-//   <Router routes={routes} history={HashRouter} />,
-//   document.getElementById('root')
-// );
 
 ReactDOM.render((
   <BrowserRouter>
@@ -22,15 +13,6 @@ ReactDOM.render((
   </BrowserRouter>
   ), document.getElementById('root')
 );
-
-// import App from './App';
-
-// export default (
-//   <Route path="/" component={App}>
-//     <Route path="/about" component={AboutPage} />
-//   </Route>
-// );
-
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

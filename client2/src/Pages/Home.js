@@ -29,7 +29,7 @@ class Home extends React.Component {
       </div>
 
 
-      <div className="site-navbar-wrap js-site-navbar bg-white">
+      <div className="site-navbar-wrap js-site-navbar bg-white" style={{position: "fixed"}}>
 
         <div className="container">
           <div className="site-navbar bg-light">
