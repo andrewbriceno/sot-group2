@@ -74,7 +74,7 @@ class Home extends React.Component {
             <div className="row align-items-center justify-content-center">
               <div className="col-md-6 text-center" data-aos="fade">
                 <h1 className="font-secondary  font-weight-bold text-uppercase">Welcome to Consider Herbs</h1>
-                <Link to="/about">ROUTING IN REACT</Link>
+                <a href="/about" style={{backgroundColor: "black"}}>ROUTING IN REACT</a>
                 <ViewProducts/>
               </div>
             </div>
