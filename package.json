@@ -11,7 +11,7 @@
   "scripts": {
     "start": "node server.js",
     "heroku-postbuild": "cd client2 && rm -rf node_modules && npm install && npm run build",
-    "start-dev": "concurrently \"node server\" \"cd client2 && npm start\""
+    "start-dev": "concurrently \"nodemon server\" \"cd client2 && npm start\""
   },
   "authors": [
     "Short On Time"
