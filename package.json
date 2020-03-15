@@ -9,9 +9,10 @@
   },
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "heroku-postbuild": "cd client2 && rm -rf node_modules && npm install && npm run build",
+    "start": "cd client2 && rm -rf node_modules && npm install && npm run build && react-scripts start",
+    "heroku-postbuild": "node server.js",
     "start-dev": "concurrently \"node server\" \"cd client2 && npm start\""
+
   },
   "authors": [
     "Short On Time"
