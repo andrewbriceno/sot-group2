@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
+import Table from "react-bootstrap/Table"
 
 import axios from 'axios';
 var config = {
@@ -78,20 +79,25 @@ class AdminGlossary extends React.Component {
             <h4>Lorem</h4>
             <p>Ipsum dolor and all that.</p>
             <div>
+            <Table striped bordered hover>
+            <thead>
               <tr>
                 <td>Title</td>
                 <td>Usage</td>
               </tr>
+              </thead>
+              
               {this.state.items.map(g => {
                 return(
-                  <tr key={g._id} name={g.title}>
-                    <td>{g.title}</td>
-                    <td>{g.usage}</td>
-                    <a class="btn btn-success" href={"/editGloss"+'?key='+g._id+"&title="+g.title}>EDIT</a>
-                    <button class="btn btn-danger" onClick={() => deleteGloss(g.title)}>DELETE</button>
+                  <tr class="adglossary_item" key={g._id} name={g.title}>
+                    <td class="adgloss_col">{g.title}</td>
+                    <td class="adgloss_col">{g.usage}</td>
+                    <td><a class="btn btn-success editButton" href={"/editGloss"+'?key='+g._id+"&title="+g.title}>EDIT</a>
+                    <button class="btn btn-danger" onClick={() => deleteGloss(g.title)}>DELETE</button></td>
                   </tr>
                 )
               })}
+              </Table>
             </div>
         </Container>
         </div>

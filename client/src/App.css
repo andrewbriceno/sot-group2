@@ -59,3 +59,15 @@
 .card-link:hover {
   color: #6c757d;
 }
+
+.editButton {
+  margin: 0em 0.5em;
+}
+
+.adglossary_item {
+  margin: 1em 0em;
+}
+
+.adgloss_col {
+  margin: 0em 1em;
+}
