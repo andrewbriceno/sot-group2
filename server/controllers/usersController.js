@@ -50,7 +50,7 @@ export const signup = async (req, res) => {
     console.log('saved =>', save_user);
   });
 
-  const payload = buildPayload(user)
+  const payload = buildPayload(save_user)
   signJWT(payload, res)
 };
 
