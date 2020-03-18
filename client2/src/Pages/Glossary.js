@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 import NavBar from '../components/NavBar';
 
-class AboutPage extends React.Component {
+class Glossary extends React.Component {
   render() {
   return (
     <div className="AboutPage">
@@ -256,4 +256,4 @@ class AboutPage extends React.Component {
 }
 }
 
-export default AboutPage;
+export default Glossary;

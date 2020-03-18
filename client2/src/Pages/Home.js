@@ -1,10 +1,10 @@
 import React from 'react';
 import ViewProducts from '../components/ViewProducts';
-import LoginButton from '../components/LoginButton';
-import logo from '../logo.svg';
+import NavBar from '../components/NavBar';
 // import { Link } from 'react-router';
 import { Link } from 'react-router-dom';
 import '../App.css';
+import Footer from '../components/Footer';
 
 class Home extends React.Component {
   render() {
@@ -32,41 +32,7 @@ class Home extends React.Component {
       </div>
 
 
-      <div className="site-navbar-wrap js-site-navbar bg-white" style={{position: "fixed", boxShadow: "0 5px 5px rgba(0,0,0,0.2)"}}>
-
-        <div className="container">
-          <div className="site-navbar bg-light">
-            <div className="row align-items-center">
-              <div className="col-2">
-                <h2 className="mb-0 site-logo"><a href="/"><img src="images/logo.jpg" width="250" height="55"/></a></h2>
-              </div>
-              <div className="col-10">
-                <nav className="site-navigation text-right" role="navigation">
-                  <div className="container">
-                    <div className="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#" className="site-menu-toggle js-menu-toggle text-black"><span className="icon-menu h3"></span></a></div>
-
-                    <ul className="site-menu js-clone-nav d-none d-lg-block">
-                      <li className="active"><a href="index.html">Home</a></li>
-                      <li className="has-children">
-                        <a href="about.html">About</a>
-                        <ul className="dropdown arrow-top">
-                          <li><a href="testimonials.html">Testimonials</a></li>
-                          <li><a href="gallery.html">Gallery</a></li>
-                          <li><a href="faq.html">Forum</a></li>
-                          <li><a href="why-choose-us.html">Why Choose Us</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="services.html">Services</a></li>
-                      <li><a href="contact.html">Contact</a></li>
-                      <li><LoginButton /></li>
-                    </ul>
-                  </div>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <NavBar />
 
       <div className="slide-one-item home-slider owl-carousel">
 
@@ -384,82 +350,9 @@ class Home extends React.Component {
         </div>
       </div>
 
+      <Footer />
 
-
-
-      <footer className="site-footer bg-dark">
-        <div className="container">
-
-
-          <div className="row">
-            <div className="col-md-4 mb-4 mb-md-0">
-              <h3 className="footer-heading mb-4 text-white">About</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat quos rem ullam, placeat amet.</p>
-              <p><a href="#" className="btn btn-primary text-white px-4">Read More</a></p>
-            </div>
-            <div className="col-md-5 mb-4 mb-md-0 ml-auto">
-              <div className="row mb-4">
-                <div className="col-md-6">
-                  <h3 className="footer-heading mb-4 text-white">Quick Menu</h3>
-                    <ul className="list-unstyled">
-                      <li><a href="#">Home</a></li>
-                      <li><a href="#">About</a></li>
-                      <li><a href="#">Blog</a></li>
-                      <li><a href="#">Contacts</a></li>
-                      <li><a href="#">Privacy</a></li>
-                    </ul>
-                </div>
-                <div className="col-md-6">
-                  <h3 className="footer-heading mb-4 text-white">Free Templates</h3>
-                    <ul className="list-unstyled">
-                      <li><a href="#">HTML5 / CSS3</a></li>
-                      <li><a href="#">Clean Design</a></li>
-                      <li><a href="#">Responsive</a></li>
-                      <li><a href="#">Multi Purpose Template</a></li>
-                    </ul>
-                </div>
-              </div>
-
-              <div className="row mb-5">
-                <div className="col-md-12">
-                <h3 className="footer-heading mb-4 text-white">Stay up to date</h3>
-                <form action="#" className="d-flex footer-subscribe">
-                  <input type="text" className="form-control rounded-0" placeholder="Enter your email"/>
-                  <input type="submit" className="btn btn-primary rounded-0" value="Subscribe"/>
-                </form>
-              </div>
-              </div>
-            </div>
-
-
-            <div className="col-md-2">
-
-              <div className="row">
-              <div className="col-md-12"><h3 className="footer-heading mb-4 text-white">Social Icons</h3></div>
-                <div className="col-md-12">
-                  <p>
-                    <a href="#" className="pb-2 pr-2 pl-0"><span className="icon-facebook"></span></a>
-                    <a href="#" className="p-2"><span className="icon-twitter"></span></a>
-                    <a href="#" className="p-2"><span className="icon-instagram"></span></a>
-                    <a href="#" className="p-2"><span className="icon-vimeo"></span></a>
-
-                  </p>
-                </div>
-            </div>
-            </div>
-          </div>
-          <div className="row pt-5 mt-5 text-center">
-            <div className="col-md-12">
-              <p>
-              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Project made with <i className="icon-heart text-danger" aria-hidden="true"></i> by Short On Time.
-              </p>
-
-
-            </div>
-
-          </div>
-        </div>
-      </footer>
+    
     </div>
     </div>
   );
