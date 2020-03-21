@@ -2,8 +2,7 @@ import React from 'react';
 import '../App.css';
 import NavBar from '../components/NavBar';
 
-class AboutPage extends React.Component {
-  render() {
+const AboutPage = () => {
   return (
     <div className="AboutPage">
 
@@ -253,7 +252,6 @@ class AboutPage extends React.Component {
   </div>
 
 );
-}
 }
 
 export default AboutPage;
