@@ -3,7 +3,21 @@ import LoginButton from '../components/LoginButton';
 import Search from '../components/Search';
 import logo from '../logo.svg';
 
-const NavBar = () => {
+
+
+const NavBar = (props) => {
+    
+    //menuItem should be the string of a navbar item 
+    const setActivePageHighlight = (menuItem) => {
+        console.log()
+        if(menuItem == props.page){
+            return "active"
+        }
+        else{
+            return
+        }
+    }
+
     return(
     <div className="site-navbar-wrap js-site-navbar bg-white" style={{position: "fixed", boxShadow: "0 5px 5px rgba(0,0,0,0.2)"}}>
 
@@ -19,8 +33,8 @@ const NavBar = () => {
                     <div className="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#" className="site-menu-toggle js-menu-toggle text-black"><span className="icon-menu h3"></span></a></div>
 
                     <ul className="site-menu js-clone-nav d-none d-lg-block">
-                      <li className="active"><a href="/">Home</a></li>
-                      <li className="has-children">
+                      <li className={setActivePageHighlight("Home")}><a href="/">Home</a></li>
+                      <li className={"has-children " + setActivePageHighlight("About")}>
                         <a href="about">About</a>
                         <ul className="dropdown arrow-top">
                           <li><a href="testimonials.html">Testimonials</a></li>
@@ -29,9 +43,9 @@ const NavBar = () => {
                           <li><a href="why-choose-us.html">Why Choose Us</a></li>
                         </ul>
                       </li>
-                      <li><a href="glossary">Glossary</a></li>
-                      <li><a href="services.html">Services</a></li>
-                      <li><a href="contact.html">Contact</a></li>
+                      <li className={setActivePageHighlight("Glossary")}><a href="glossary">Glossary</a></li>
+                      <li className={setActivePageHighlight("Services")}><a href="services.html">Services</a></li>
+                      <li className={setActivePageHighlight("Contact")}><a href="contact.html">Contact</a></li>
                       <li><LoginButton /></li>
                       <li><Search /></li>
                     </ul>

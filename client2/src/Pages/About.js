@@ -28,7 +28,7 @@ class AboutPage extends React.Component {
     </div>
 
 
-    <NavBar />
+    <NavBar page="About"/>
 
     <div className="site-blocks-cover inner-page overlay" style={{backgroundImage: "url('images/hero_2.jpg')"}} data-aos="fade" data-stellar-background-ratio="0.5">
       <div className="row align-items-center justify-content-center">

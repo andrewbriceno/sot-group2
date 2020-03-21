@@ -33,7 +33,7 @@ class Home extends React.Component {
       </div>
 
 
-      <NavBar />
+      <NavBar page="Home"/>
 
       <div className="slide-one-item home-slider owl-carousel">
 
