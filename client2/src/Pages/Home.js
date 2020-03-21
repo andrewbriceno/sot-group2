@@ -1,5 +1,6 @@
 import React from 'react';
 import ViewProducts from '../components/ViewProducts';
+import Search from '../components/Search';
 import NavBar from '../components/NavBar';
 // import { Link } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -352,7 +353,7 @@ class Home extends React.Component {
 
       <Footer />
 
-    
+
     </div>
     </div>
   );
