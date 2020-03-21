@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import LoginButton from '../components/LoginButton';
+import Search from '../components/Search';
 import logo from '../logo.svg';
 
 const NavBar = () => {
@@ -32,6 +33,7 @@ const NavBar = () => {
                       <li><a href="services.html">Services</a></li>
                       <li><a href="contact.html">Contact</a></li>
                       <li><LoginButton /></li>
+                      <li><Search /></li>
                     </ul>
                   </div>
                 </nav>
