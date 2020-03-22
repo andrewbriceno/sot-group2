@@ -1,28 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import axios from 'axios';
 import config from './config.js';
 
-export default class ViewProducts extends React.Component {
+const ViewProducts = () => {
+    //TODO: find a way to eliminate setProductsJSX
+    const [products, setProducts] = useState([]);
+    const [productsJSX, setProductsJSX] = useState([]);
 
-  state = {
-      products: []
-    }
-
-    componentDidMount() {
+    useEffect( () => {
       axios.get(`http://localhost:${config.server_port}/api/users/get_product`)
         .then(res => {
           const products = res.data;
-          this.setState({ products });
+          setProducts({ products });
+          setProductsJSX(products.map(product => <li>{product.name}</li>));
         })
-    }
+    }, []);
 
-    render() {
-      return (
-        <ul style={{backgroundColor: "white"}}>
-          { this.state.products.map(product => <li>{product.name}</li>)}
-        </ul>
-      )
-    }
-
+    return (
+      <ul style={{backgroundColor: "white"}}>
+        { productsJSX }
+      </ul>
+    );
+    
 };
-// export default ViewProducts;
+export default ViewProducts;

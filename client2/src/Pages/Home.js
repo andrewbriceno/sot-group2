@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import Footer from '../components/Footer';
 
-class Home extends React.Component {
-  render() {
+const Home = () => {
+  
   return (
     <div className="App">
 
@@ -357,7 +357,6 @@ class Home extends React.Component {
     </div>
     </div>
   );
-  }
 }
 
 export default Home;

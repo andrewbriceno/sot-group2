@@ -6,8 +6,7 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import Footer from '../components/Footer';
 
-class Admin extends React.Component {
-  render() {
+const Admin = () => {
   return (
     <div className="App">
 
@@ -69,7 +68,6 @@ class Admin extends React.Component {
     </div>
     </div>
   );
-  }
 }
 
 export default Admin;
