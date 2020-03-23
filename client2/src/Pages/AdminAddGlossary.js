@@ -94,7 +94,7 @@ class AdminAddGlossary extends React.Component {
         <div>
           <form>
             <label for="title">Title: </label>
-            <input id="title" type="text" name="title" value={this.state.tutke} onChange={this.handleInput.bind(this)} required/>
+            <input id="title" type="text" name="title" value={this.state.title} onChange={this.handleInput.bind(this)} required/>
             <p/>
             <label for="definition">Definition: </label>
             <input id="definition" type="text" name="definition" value={this.state.definition} onChange={this.handleInput.bind(this)} required/>
