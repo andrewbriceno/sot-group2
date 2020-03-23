@@ -12,7 +12,10 @@ class Admin extends React.Component {
     <div className="site-wrap">
 
       <h1>Glossary Panel</h1>
-      <a href="#" className="btn btn-primary text-white px-4">go back</a>
+      <a href="/admin" className="btn btn-primary text-white px-4">go back</a>
+      <p/>
+
+      <a className="btn btn-primary text-white px-4" href="/admin/add_glossary?new=true">Add</a>
 
       <AdminViewGlossary/>
 

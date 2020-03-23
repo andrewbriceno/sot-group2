@@ -1,7 +1,6 @@
 import '../App.css';
 import React from 'react';
 import axios from 'axios';
-import Axios from 'axios';
 import config from '../config.js';
 
 class AdminEditGlossary extends React.Component {
@@ -84,7 +83,7 @@ class AdminEditGlossary extends React.Component {
   makeIt(e) {
     var toSubmit = this.state;
     if(toSubmit.title && toSubmit.definition && toSubmit.usage) {
-      Axios.put(`http://localhost:${config.server_port}/api/admin/update_glossary/${toSubmit.title}`, toSubmit);
+      axios.put(`http://localhost:${config.server_port}/api/admin/update_glossary/${toSubmit.title}`, toSubmit);
     } else {
       console.log("not done yet");
     }
@@ -97,7 +96,7 @@ class AdminEditGlossary extends React.Component {
       <div className="site-wrap">
   
         <h1>Editing Glossary</h1>
-        <a href="#" className="btn btn-primary text-white px-4">go back</a>
+        <a href="/admin/glossary_list" className="btn btn-primary text-white px-4">go back</a>
         <p/>
 
         <div>
