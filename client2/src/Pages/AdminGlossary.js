@@ -5,6 +5,17 @@ import '../App.css';
 import AdminViewGlossary from '../components/AdminViewGlossary';
 
 class Admin extends React.Component {
+
+  state={
+    query: ""
+  }
+
+  setFilter (e) {
+    this.setState({
+      query: e.target.value
+    });
+  }
+
   render() {
   return (
     <div className="App">
@@ -15,9 +26,10 @@ class Admin extends React.Component {
       <a href="/admin" className="btn btn-primary text-white px-4">go back</a>
       <p/>
 
+      <input type="text" name="search" placeholder="Search Title Here!" onChange={this.setFilter.bind(this)}/>
       <a className="btn btn-primary text-white px-4" href="/admin/add_glossary?new=true">Add</a>
 
-      <AdminViewGlossary/>
+      <AdminViewGlossary query={this.state.query}/>
 
     </div>
     </div>

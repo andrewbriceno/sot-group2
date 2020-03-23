@@ -36,17 +36,19 @@ export default class AdminViewGlossary extends React.Component {
             <td>Title</td>
             <td>Usage</td>
           </tr>
-          {this.state.glossary.map(glossary => {
-            return(
-              <tr key={glossary.id} name={glossary.title}>
-                <td>{glossary.title}</td>
-                <td>{glossary.usage}</td>
-                <a class="btn btn-primary text-white px-4" href={`/admin/edit_glossary?key=${glossary._id}`}>EDIT</a>
-                {/*https://stackoverflow.com/questions/34875557/creating-custom-function-in-react-component*/}
-                <button class="btn btn-primary text-white px-4" onClick={this.deleteGloss.bind(this)} value={glossary.title}>DELETE</button>
-              </tr>
-            )
-          })}
+            {
+              this.state.glossary.filter(glossary => glossary.title.toLowerCase().includes(this.props.query.toLowerCase())).map(glossary => {
+                return(
+                  <tr key={glossary.id} name={glossary.title}>
+                    <td>{glossary.title}</td>
+                    <td>{glossary.usage}</td>
+                    <a class="btn btn-primary text-white px-4" href={`/admin/edit_glossary?key=${glossary._id}`}>EDIT</a>
+                    {/*https://stackoverflow.com/questions/34875557/creating-custom-function-in-react-component*/}
+                    <button class="btn btn-primary text-white px-4" onClick={this.deleteGloss.bind(this)} value={glossary.title}>DELETE</button>
+                  </tr>
+                )
+              })
+            }
         </div>
       )
     }
