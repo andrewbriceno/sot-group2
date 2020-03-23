@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import AdminViewGlossary from '../components/AdminViewGlossary';
 
-class Admin extends React.Component {
+class AdminGlossary extends React.Component {
 
   state={
     query: ""
@@ -37,4 +37,4 @@ class Admin extends React.Component {
   }
 }
 
-export default Admin;
+export default AdminGlossary;
