@@ -52,7 +52,7 @@ const Admin = () => {
           <div className="media-image-body">
             <h2 className="font-secondary text-uppercase">Users</h2>
             <p>Add, edit, and delete items.</p>
-            <p><a href="#" className="btn btn-primary text-white px-4">Go</a></p>
+            <p><a href="/admin/user_list/" className="btn btn-primary text-white px-4">Go</a></p>
           </div>
         </div>
         <div className="media-image">
