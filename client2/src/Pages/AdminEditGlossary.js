@@ -109,7 +109,7 @@ class AdminEditGlossary extends React.Component {
             <label for="usage">Usage: </label>
             <input id="usage" type="text" name="usage" value={this.state.usage} onChange={this.handleInput.bind(this)} required/>
             <p/>
-            <input type="checkbox" id="draft" name="draft" checked={!(this.state.is_published)} onChange={this.handleInput.bind(this)} required/>
+            <input type="checkbox" id="draft" name="draft" checked={!(this.state.is_published)} onChange={this.handleInput.bind(this)}/>
             <label for="draft">Draft</label>
             <p/>
             <input type="submit" value="Save" onClick={this.makeIt.bind(this)}/>
