@@ -39,7 +39,7 @@ export default class AdminViewGlossary extends React.Component {
           {
             this.state.glossary.filter(glossary => glossary.title.toLowerCase().includes(this.props.query.toLowerCase())).map(glossary => {
               return(
-                <tr key={glossary.id} name={glossary.title}>
+                <tr key={glossary._id} name={glossary.title}>
                   <td>{glossary.title}</td>
                   <td>{glossary.usage}</td>
                   <a class="btn btn-primary text-white px-4" href={`/admin/edit_glossary?key=${glossary._id}`}>EDIT</a>
