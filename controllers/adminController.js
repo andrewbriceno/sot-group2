@@ -242,18 +242,77 @@ export const deleteGlossary = async (req, res) => {
   });
 };
 
-export const deleteUser = async (req, res) => {
-  const email = req.body.email
-  User.findOneAndRemove({email: email}, function(err, result) {
-    if (err) {
-      console.log("Error deleting", err);
-      res.status(404).json({
-        err
-      });
-      throw err;
-    }
-    res.status(200).json({
-      result
-    });
+export const addUser = async (req, res) => {
+  initMongoose()
+  let save_user
+  save_user = new User({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    is_admin: req.body.is_admin,
+    is_premium: req.body.is_premium,
   });
-}
+  save_user.save(function (err, save_user) {
+    if(err) {
+      return res.status(400).json(err);
+    } else {
+      console.log('saved =>', save_user);
+      return res.status(200).json(save_user);
+    }
+  });
+};
+
+export const updateUser = async (req, res) => {
+  initMongoose()
+  const username = req.params.username;
+  User.findOneAndUpdate({username: username}, req.body, {new: true}, (err, data) => {
+    if(err) {
+      res.status(400).json({err});
+      throw err;
+    } else if(!data) {
+      res.status(400).json({
+        message: 'User does not exist!',
+      });
+    } else {
+      res.status(200).json(data)
+    }
+  });
+};
+
+export const getUser = async (req, res) => {
+  initMongoose()
+  const username = req.params.username;
+  User.findOne({username: username}, (err, data) => {
+    if(!data) {
+      res.status(400).json({
+        message: 'User does not exist!',
+      });
+    } else {
+      res.status(200).json(data);
+    }
+  });
+};
+
+export const getUserList = async (req, res) => {
+  initMongoose()
+  User.find({}, (err, data) => {
+    res.status(200).json(data);
+  });
+};
+
+export const deleteUser = async (req, res) => {
+  initMongoose()
+  const username = req.params.username;
+  User.findOneAndDelete({username: username}, (err, data) => {
+    if(err) {
+      res.status(400).json({err});
+      throw err;
+    } else if(!data) {
+      res.status(400).json({
+        message: 'User does not exist!',
+      });
+    } else {
+      res.status(200).json(data);
+    }
+  });
+};

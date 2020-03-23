@@ -23,7 +23,11 @@ adminRouter.get('/get_glossary/:title', admin.getGlossary);
 adminRouter.get('/get_glossary', admin.getGlossaryList);
 adminRouter.delete('/delete_glossary/:title', admin.deleteGlossary);
 
-//remove user
-adminRouter.post('/delete_user', admin.deleteUser);
+//user routes
+adminRouter.post('/add_user', admin.addUser);
+adminRouter.put('/update_user/:username', admin.updateUser);
+adminRouter.get('/get_user/:username', admin.getUser);
+adminRouter.get('/get_user', admin.getUserList);
+adminRouter.delete('/delete_user/:username', admin.deleteUser);
 
 export default adminRouter;
