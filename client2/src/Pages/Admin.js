@@ -28,7 +28,7 @@ const Admin = () => {
           <div className="media-image-body">
             <h2 className="font-secondary text-uppercase">Glossary</h2>
             <p>Add, edit, and delete items.</p>
-            <p><a href="#" className="btn btn-primary text-white px-4">GO</a></p>
+            <p><Link to="/admin/glossary_list/" className="btn btn-primary text-white px-4">GO</Link></p>
           </div>
         </div>
         <div className="media-image">
