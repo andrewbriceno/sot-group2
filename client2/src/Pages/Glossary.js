@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import NavBar from '../components/NavBar';
+import ViewGlossary from '../components/ViewGlossary'
 
 const Glossary = () => {
   return (
@@ -33,7 +34,7 @@ const Glossary = () => {
       <div className="row align-items-center justify-content-center">
         <div className="col-md-5 text-center" data-aos="fade">
           <h1 className="text-uppercase">About Us</h1>
-          <span className="caption d-block text-white">Free Templates by <a href="#">Colorlib</a></span>
+          <ViewGlossary />
         </div>
       </div>
     </div>
