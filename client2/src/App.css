@@ -50,3 +50,16 @@
     transform: rotate(360deg);
   }
 }
+
+.hover-card {
+  transition: box-shadow .3s;  
+  
+}
+.hover-card:hover {
+  box-shadow: 0 0 11px rgba(33,33,33,.2); 
+  
+}
+
+.adglossary-content {
+  margin-top: 1rem;
+}
