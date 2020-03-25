@@ -11,7 +11,8 @@
   "scripts": {
     "start": "node server.js",
     "heroku-postbuild": "cd client2 && rm -rf node_modules && npm install && npm run build",
-    "start-dev": "concurrently \"nodemon server\" \"cd client2 && npm start\""
+    "start-dev": "concurrently \"nodemon server\" \"cd client2 && npm start\"",
+    "prepDB": "cd prepDB && node emptyGlossary.js && node emptyRecipes.js && node populateGlossary.js && node populateRecipes.js"
   },
   "authors": [
     "Short On Time"

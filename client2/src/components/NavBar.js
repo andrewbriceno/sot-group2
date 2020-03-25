@@ -9,7 +9,6 @@ const NavBar = (props) => {
     
     //menuItem should be the string of a navbar item 
     const setActivePageHighlight = (menuItem) => {
-        console.log()
         if(menuItem == props.page){
             return "active"
         }

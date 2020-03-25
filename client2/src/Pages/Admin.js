@@ -34,7 +34,7 @@ const Admin = () => {
             />
           </CardDeck>
         </Container>
-        {/* temporaray break line */}
+        {/* temporary break line */}
         <hr />
         <Container>
           <CardDeck>

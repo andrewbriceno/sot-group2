@@ -14,6 +14,8 @@ import AdminUsers from './Pages/AdminUsers';
 import AdminAddUser from './Pages/AdminAddUser';
 import AdminEditUser from './Pages/AdminEditUser';
 
+import PageNotFound from './Pages/PageNotFound'
+
 
 const Main = () => {
   return (
@@ -30,6 +32,7 @@ const Main = () => {
       <Route exact path='/admin/user_list/' component={AdminUsers}/>
       <Route exact path='/admin/add_user/' component={AdminAddUser}/>
       <Route exact path='/admin/edit_user/' component={AdminEditUser}/>
+      <Route component={PageNotFound}/>
     </Switch>
   );
 }
