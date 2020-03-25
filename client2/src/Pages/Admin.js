@@ -9,7 +9,7 @@ const Admin = () => {
   return (
     <div className="App">
       <div className="site-wrap">
-        <AdminNavBar />
+        <AdminNavBar isDashboard={true}/>
         <Container>
           <CardDeck>
             <AdminPanelCard
@@ -23,7 +23,7 @@ const Admin = () => {
               title="Remedy List"
               image="images/img_4.jpg"
               description="Add, edit, and delete remedies."
-              link="#"
+              link="/admin/product_list"
             />
 
             <AdminPanelCard

@@ -8,6 +8,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Button from "react-bootstrap/Button";
 import { FaRegUserCircle } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
 import { FiEye } from "react-icons/fi";
 import { MdExitToApp } from "react-icons/md";
 import "../App.css";
@@ -24,17 +25,19 @@ const logOutPopover = (
   );
 
 
-const AdminNavBar = () => {
+const AdminNavBar = (props) => {
   return (
     <Navbar bg="success" >
       <Navbar.Brand>
           <Image src="images/logo.jpg" width="250" height="55" rounded />
       </Navbar.Brand>
-      <Nav className="mr-auto">
-        <Navbar.Brand>
+      <Navbar.Brand>
           <h2 className="text-light">Admin Panel</h2>
         </Navbar.Brand>
-      </Nav>     
+      <Nav className="mr-auto">
+        
+      <Nav.Link className="text-light" href="/admin" hidden={props.isDashboard}><FaArrowLeft/> go back</Nav.Link>
+      </Nav>           
       
       <OverlayTrigger trigger="click" placement="left" overlay={logOutPopover}>
       
@@ -42,6 +45,7 @@ const AdminNavBar = () => {
        <h3 className="text-light" style={{marginBottom:'0em'}}><FaRegUserCircle size={32} color="white" style={{marginBottom:'0.5rem'}}/> Options </h3> 
       </Button>
       </OverlayTrigger>
+      
       
     </Navbar>
   );

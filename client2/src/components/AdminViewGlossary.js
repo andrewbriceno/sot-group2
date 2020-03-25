@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import config from '../config.js';
-
+import Table from 'react-bootstrap/Table'
 export default class AdminViewGlossary extends React.Component {
 
   state = {
@@ -31,14 +31,18 @@ export default class AdminViewGlossary extends React.Component {
 
   render() {
     return (
-      <div>
+      <Table striped bordered >
+        <thead>
         <tr>
-          <td>Title</td>
-          <td>Usage</td>
+          <th>Title</th>
+          <th>Usage</th>
         </tr>
+      </thead>
+      <tbody>
           {
             this.state.glossary.filter(glossary => glossary.title.toLowerCase().includes(this.props.query.toLowerCase())).map(glossary => {
               return(
+                
                 <tr key={glossary._id} name={glossary.title}>
                   <td>{glossary.title}</td>
                   <td>{glossary.usage}</td>
@@ -49,7 +53,8 @@ export default class AdminViewGlossary extends React.Component {
               )
             })
           }
-      </div>
+          </tbody>
+      </Table>
     )
   }
 };
