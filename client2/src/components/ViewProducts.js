@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from './config.js';
 
 const ViewProducts = () => {
-    //TODO: find a way to eliminate setProductsJSX
+    //TODO: find a way to eliminate productsJSX
     const [products, setProducts] = useState([]);
     const [productsJSX, setProductsJSX] = useState([]);
 

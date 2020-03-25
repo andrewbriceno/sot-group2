@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import LoginButton from '../components/LoginButton';
 import Search from '../components/Search';
-import logo from '../logo.svg';
+import logo from '../resources/logo.jpg';
 
 
 
@@ -24,7 +24,7 @@ const NavBar = (props) => {
           <div className="site-navbar bg-light">
             <div className="row align-items-center">
               <div className="col-2">
-                <h2 className="mb-0 site-logo"><a href="/"><img src="images/logo.jpg" width="250" height="55"/></a></h2>
+                <h2 className="mb-0 site-logo"><a href="/"><img src={logo} width="250" height="55"/></a></h2>
               </div>
               <div className="col-10">
                 <nav className="site-navigation text-right" role="navigation">

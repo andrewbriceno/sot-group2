@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from './config.js';
 
@@ -8,20 +8,14 @@ const ViewGlossary = () => {
     const [glossaryJSX, setGlossaryJSX] = useState([]);
 
     const glossaryItem = (item, letter) => {
-        console.log(item.title.toUpperCase()[0]);
-        console.log(letter.letter);
-        if(item.title.toUpperCase()[0] == letter.letter){
-            return (<div>{item.title}</div>);
-        }
-        else{
+        const JSX = [];
+        if(! (item.title.toUpperCase()[0] == letter.letter)){
             letter.letter = item.title.toUpperCase()[0];
-            return(
-                [
-                <h5>{letter.letter}</h5>,
-                <div>{item.title}</div>
-                ]
-            );
+            JSX.push(<br />);
+            JSX.push(<h5>{letter.letter}</h5>);
         }
+        JSX.push(<div><a href = {"/glossary/" + item.title} className="text-secondary">{item.title}</a></div>)
+        return JSX;
     }
 
     useEffect( () => {
