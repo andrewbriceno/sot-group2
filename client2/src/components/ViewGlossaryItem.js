@@ -5,7 +5,6 @@ import config from './config.js';
 const ViewGlossaryItem = (props) => {
     const [glossaryItem, setGlossaryItem] = useState([]);
 
-    console.log(props);
     const createGlossaryItem = (item) => {
         const JSX = [
             <h3>{item.title}</h3>,

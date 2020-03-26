@@ -7,19 +7,7 @@ import Footer from '../components/Footer';
 import { Switch, Route, useParams } from 'react-router-dom';
 
 const Glossary = (props) => {
-
-    console.log(props.match.params.title);
-
-    const showGlossaryItems = () => {
-        if(props.match.params.title == undefined){
-            return (<ViewGlossary />);
-        }
-        else{
-            return (<ViewGlossaryItem title = {props.match.params.title} />);
-        }
-
-    }
-
+    
     return (
         <div className="AboutPage">
             <div id="overlayer"></div>
@@ -44,7 +32,7 @@ const Glossary = (props) => {
                     <div className="row align-items-center justify-content-center">
                         <div className="col-md-5 text-center" data-aos="fade">
                             <h1 className="text-uppercase">Glossary</h1>
-                            { showGlossaryItems() }
+                            <ViewGlossary title = {props.match.params.title} />
                         </div>
                     </div>
                 </div>
