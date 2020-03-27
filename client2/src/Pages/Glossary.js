@@ -28,9 +28,9 @@ const Glossary = (props) => {
 
                 <div className="site-blocks-cover inner-page overlay" style={{backgroundImage: "url('images/hero_2.jpg')"}} data-aos="fade" data-stellar-background-ratio="0.5">
                     <div className="row align-items-center justify-content-center">
-                        <div className="col-md-5 text-center" data-aos="fade">
+                        <div className="text-center" data-aos="fade">
                             <h1 className="text-uppercase">Glossary</h1>
-                            <ViewGlossary title = {props.match.params.title} />
+                            <ViewGlossary title = {props.match.params.title}/>
                         </div>
                     </div>
                 </div>

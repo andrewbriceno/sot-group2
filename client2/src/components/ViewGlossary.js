@@ -9,14 +9,19 @@ const ViewGlossary = (props) => {
     const [glossaryJSX, setGlossaryJSX] = useState([]);
 
     const glossaryItem = (item, letter) => {
-        const JSX = [];
         if(! (item.title.toUpperCase()[0] == letter.letter)){
             letter.letter = item.title.toUpperCase()[0];
-            JSX.push(<br />);
-            JSX.push(<h5>{letter.letter}</h5>);
+            console.log("new letter:" + item.title);
+            return(
+                <div className="glossary-letter card">
+                    <h5>{letter.letter}</h5>
+                    <a href = {"/glossary/" + item.title} className="text-secondary">{item.title}</a>
+                </div>
+            );
         }
-        JSX.push(<div><a href = {"/glossary/" + item.title} className="text-secondary">{item.title}</a></div>)
-        return JSX;
+        else{
+            return(<div><a href = {"/glossary/" + item.title} className="text-secondary">{item.title}</a></div>);
+        }
     }
 
     
@@ -32,7 +37,7 @@ const ViewGlossary = (props) => {
 
     const getItem = () => {
         if(!props.title){
-            return <div style={{backgroundColor: "white"}}>{glossaryJSX}</div>;
+            return <div style={{backgroundColor: "white"}} className="list-unstyled card-columns glossary">{glossaryJSX}</div>;
         }
         else if (glossaryJSX.size === 0){
             return <p>Loading Glossary Items...</p>

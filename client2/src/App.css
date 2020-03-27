@@ -63,3 +63,45 @@
 .adglossary-content {
   margin-top: 1rem;
 }
+
+.card {
+  border: none;
+  padding-top: 10px;
+}
+
+.glossary-letter card {
+    padding-bottom: 0rem;
+}
+
+.glossary {
+    column-count: 1;
+    opacity: 1;
+}
+
+@media (min-width: 576px) and (max-width: 767px) { 
+    .glossary {
+        column-count: 2;
+        opacity: 1;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) { 
+    .glossary {
+        column-count: 3;
+        opacity: 0.95;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) { 
+    .glossary {
+        column-count: 4;
+        opacity: 0.95;
+    }
+}
+
+@media (min-width: 1200px) { 
+    .glossary {
+        column-count: 5;
+        opacity: 0.95;
+    }
+}
