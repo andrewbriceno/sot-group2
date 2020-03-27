@@ -17,7 +17,7 @@ const AdminGlossary = () => {
       <div className="site-wrap">
         <AdminNavBar isDashboard={false} />
         <Container>
-          
+
         <div class="adglossary-content">
           <InputGroup className="mb-3">
             <FormControl
@@ -26,7 +26,7 @@ const AdminGlossary = () => {
               <Button variant="outline-success">Search</Button>
             </InputGroup.Append>
           </InputGroup>
-               
+
 
         {/* <a
           className="btn btn-primary text-white px-4"
