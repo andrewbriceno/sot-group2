@@ -3,6 +3,7 @@ import LoginButton from '../components/LoginButton';
 import Search from '../components/Search';
 import Logout from '../components/Logout';
 import Contact from '../components/ContactButton';
+import Services from '../components/ServicesButton';
 import logo from '../logo.svg';
 
 
@@ -58,7 +59,7 @@ const NavBar = (props) => {
                         </ul>
                       </li>
                       <li className={setActivePageHighlight("Glossary")}><a href="glossary">Glossary</a></li>
-                      <li className={setActivePageHighlight("Services")}><a href="services.html">Services</a></li>
+                      <li className={setActivePageHighlight("Services")}><Services/></li>
                       <li className={setActivePageHighlight("Contact")}><Contact /></li>
                       <li>{ logged() }</li>
                       <li><Search /></li>
