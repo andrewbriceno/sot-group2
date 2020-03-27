@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import LoginButton from '../components/LoginButton';
 import Search from '../components/Search';
+import Contact from '../components/ContactButton';
 import logo from '../logo.svg';
 
 
 
 const NavBar = (props) => {
-    
-    //menuItem should be the string of a navbar item 
+
+    //menuItem should be the string of a navbar item
     const setActivePageHighlight = (menuItem) => {
         if(menuItem == props.page){
             return "active"
@@ -44,7 +45,7 @@ const NavBar = (props) => {
                       </li>
                       <li className={setActivePageHighlight("Glossary")}><a href="glossary">Glossary</a></li>
                       <li className={setActivePageHighlight("Services")}><a href="services.html">Services</a></li>
-                      <li className={setActivePageHighlight("Contact")}><a href="contact.html">Contact</a></li>
+                      <li className={setActivePageHighlight("Contact")}><Contact /></li>
                       <li><LoginButton /></li>
                       <li><Search /></li>
                     </ul>
