@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from './config.js';
 import ViewGlossaryItem from './ViewGlossaryItem.js';
-import { PromiseProvider } from 'mongoose';
 
 const ViewGlossary = (props) => {
     //TODO: find a way to eliminate setGlossaryJSX
@@ -36,7 +35,7 @@ const ViewGlossary = (props) => {
             return <div style={{backgroundColor: "white"}}>{glossaryJSX}</div>;
         }
         else if (glossaryJSX.size === 0){
-            return <p>you shouldnt be here wither</p>
+            return <p>Loading Glossary Items...</p>
         }
         else if(doesContain(props.title, glossary) === false && glossary.length>0){
             document.location = "/glossary"

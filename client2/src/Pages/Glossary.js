@@ -2,9 +2,7 @@ import React from 'react';
 import '../App.css';
 import NavBar from '../components/NavBar';
 import ViewGlossary from '../components/ViewGlossary';
-import ViewGlossaryItem from '../components/ViewGlossaryItem';
 import Footer from '../components/Footer';
-import { Switch, Route, useParams } from 'react-router-dom';
 
 const Glossary = (props) => {
     

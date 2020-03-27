@@ -8,8 +8,8 @@ const ViewGlossaryItem = (props) => {
     const createGlossaryItem = (item) => {
         const JSX = [
             <h3>{item.title}</h3>,
-            <p><b>Usage: </b> {item.usage}</p>,
-            <p><b>Definition: </b> {item.definition}</p>
+            <p className="text-primary"><b>Usage: </b> {item.usage}</p>,
+            <p className="text-primary"><b>Definition: </b> {item.definition}</p>
         ];
         
         return JSX;
