@@ -7,20 +7,42 @@ const ViewProducts = () => {
     const [products, setProducts] = useState([]);
     const [productsJSX, setProductsJSX] = useState([]);
 
-    useEffect( () => {
-      axios.get(`http://localhost:${config.server_port}/api/users/get_product`)
-        .then(res => {
-          const products = res.data;
-          setProducts({ products });
-          setProductsJSX(products.map(product => <li>{product.name}</li>));
-        })
-    }, []);
+    const ProductItem = (item, letter) => {
+      console.log(item.name.toUpperCase()[0]);
+      console.log(letter.letter);
+      if(item.name.toUpperCase()[0] == letter.letter){
+          return (<div>{item.name}</div>);
+      }
+      else{
+          letter.letter = item.name.toUpperCase()[0];
+          return(
+              [
+              <h5>{letter.letter}</h5>,
+              <div>{item.name}</div>
+              ]
+          );
+      }
+  }
 
-    return (
-      <ul style={{backgroundColor: "white"}}>
-        { productsJSX }
-      </ul>
-    );
-    
+  useEffect( () => {
+    axios.get(`http://localhost:${config.server_port}/api/users/get_product`)
+      .then(res => {
+          const items = res.data;
+//
+
+          const lastLetter = {letter : ""}
+          setProducts({ items });
+          setProductsJSX(items.map(item => ProductItem(item, lastLetter)));
+      })
+  }, []);
+
+  return (
+    <div style={{backgroundColor: "white"}}>
+      { productsJSX }
+    </div>
+  );
+  
 };
 export default ViewProducts;
+
+

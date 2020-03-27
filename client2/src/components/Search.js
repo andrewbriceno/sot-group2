@@ -5,10 +5,10 @@ const SearchField = () => {
     url = url.split("/")[3]
 
 
-    if (url == "glossary") {
+    if (url == "products") {
       return (
           <form>
-              <input style={{borderRadius: '30px', boxShadow: '2px 2px'}} type="text" placeholder="Filter for Manuel"/>
+              <input style={{borderRadius: '30px', boxShadow: '2px 2px'}} type="text" placeholder="Search for any products"/>
           </form>
       );
     } else {
