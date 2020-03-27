@@ -1,26 +1,53 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from './config.js';
+import ViewGlossaryItem from './ViewGlossaryItem.js';
 
-const ViewGlossary = () => {
+const ViewGlossary = (props) => {
     //TODO: find a way to eliminate setGlossaryJSX
     const [glossary, setGlossary] = useState([]);
     const [glossaryJSX, setGlossaryJSX] = useState([]);
 
     const glossaryItem = (item, letter) => {
-        console.log(item.title.toUpperCase()[0]);
-        console.log(letter.letter);
-        if(item.title.toUpperCase()[0] == letter.letter){
-            return (<div>{item.title}</div>);
+        if(! (item.title.toUpperCase()[0] == letter.letter)){
+            letter.letter = item.title.toUpperCase()[0];
+            console.log("new letter:" + item.title);
+            return(
+                <div className="glossary-letter card">
+                    <h5>{letter.letter}</h5>
+                    <a href = {"/glossary/" + item.title} className="text-secondary">{item.title}</a>
+                </div>
+            );
         }
         else{
-            letter.letter = item.title.toUpperCase()[0];
-            return(
-                [
-                <h5>{letter.letter}</h5>,
-                <div>{item.title}</div>
-                ]
-            );
+            return(<div><a href = {"/glossary/" + item.title} className="text-secondary">{item.title}</a></div>);
+        }
+    }
+
+    
+    const doesContain = (title, glossary) => {
+        let contains = false;
+        glossary.forEach( (item) => {
+            if(item.title === title){
+                contains = true;
+            }
+        });
+        return contains;
+    }
+
+    const getItem = () => {
+        if(!props.title){
+            return <div style={{backgroundColor: "white"}} className="list-unstyled card-columns glossary">{glossaryJSX}</div>;
+        }
+        else if (glossaryJSX.size === 0){
+            return <p>Loading Glossary Items...</p>
+        }
+        else if(doesContain(props.title, glossary) === false && glossary.length>0){
+            document.location = "/glossary"
+            return (<div><h3>Item not found</h3><p>Redirecting..</p></div>);
+        }
+        else{
+            return <ViewGlossaryItem title= {props.title}/>;
         }
     }
 
@@ -42,16 +69,12 @@ const ViewGlossary = () => {
             items.sort( compare );
 
             const lastLetter = {letter : ""}
-            setGlossary({ items });
+            setGlossary(items);
             setGlossaryJSX(items.map(item => glossaryItem(item, lastLetter)));
         })
     }, []);
 
-    return (
-      <div style={{backgroundColor: "white"}}>
-        { glossaryJSX }
-      </div>
-    );
+    return getItem();
     
 };
 export default ViewGlossary;
