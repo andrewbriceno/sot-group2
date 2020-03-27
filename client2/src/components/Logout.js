@@ -10,17 +10,23 @@ class Logout extends React.Component {
 
   logout = () => {
     localStorage.clear();
+    // localStorage.setItem("user_logged", false)
     this.setState({nav: true})
   }
 
   render() {
     const {nav} = this.state;
 
+    if (this.props.loginData) {
+      console.log("LOGIN DATA ====");
+      this.props.loginData()
+    }
+
     if (nav) {
       return <a href="/" onClick={this.logout}>Logout</a>
     }
 
-    return <a href="/">Logout</a>
+    return <a href="/" onClick={this.logout}>Logout</a>
   }
 }
 

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import LoginButton from '../components/LoginButton';
 import Search from '../components/Search';
+import Logout from '../components/Logout';
 import Contact from '../components/ContactButton';
 import logo from '../logo.svg';
 
@@ -17,6 +18,19 @@ const NavBar = (props) => {
             return
         }
     }
+    const [token, setToken] = useState(localStorage.getItem("user_logged"));
+    const logout_user = () => setToken('true');
+    let ulogged = localStorage.getItem("user_logged")
+
+    const logged = () => {
+      if (token) {
+        return <Logout loginData={logout_user} />
+      } else {
+        return <LoginButton />
+      }
+    }
+    // console.log("==> user_logged: " + token);
+
 
     return(
     <div className="site-navbar-wrap js-site-navbar bg-white" style={{position: "fixed", boxShadow: "0 5px 5px rgba(0,0,0,0.2)"}}>
@@ -46,7 +60,7 @@ const NavBar = (props) => {
                       <li className={setActivePageHighlight("Glossary")}><a href="glossary">Glossary</a></li>
                       <li className={setActivePageHighlight("Services")}><a href="services.html">Services</a></li>
                       <li className={setActivePageHighlight("Contact")}><Contact /></li>
-                      <li><LoginButton /></li>
+                      <li>{ logged() }</li>
                       <li><Search /></li>
                     </ul>
                   </div>

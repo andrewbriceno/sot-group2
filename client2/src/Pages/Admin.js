@@ -4,11 +4,13 @@ import Container from "react-bootstrap/Container";
 import "../App.css";
 import AdminNavBar from "../components/AdminNavBar";
 import AdminPanelCard from "../components/AdminPanelCard";
+import Footer from "../components/Footer";
+
 
 const Admin = () => {
   return (
     <div className="App">
-      <div className="site-wrap">
+      <div className="mb-5">
         <AdminNavBar isDashboard={true}/>
         <Container>
           <CardDeck>
@@ -62,6 +64,7 @@ const Admin = () => {
         </Container>
         {/* </Row> */}
       </div>
+      <Footer />
     </div>
   );
 };

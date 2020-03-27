@@ -30,12 +30,12 @@ const logOutPopover = (
 const AdminNavBar = (props) => {
   return (
 
-    <Navbar bg="success" >
+    <Navbar bg="success" className="mb-5">
       <Navbar.Brand>
           <Image src="images/logo.jpg" width="250" height="55" rounded />
       </Navbar.Brand>
       <Navbar.Brand>
-          <h2 className="text-light">Admin Panely</h2>
+          <h2 className="text-light">Admin Panel</h2>
         </Navbar.Brand>
       <Nav className="mr-auto">
 

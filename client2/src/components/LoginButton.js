@@ -3,13 +3,20 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import config from './config.js';
+import Logout from '../components/Logout';
 import React, {useState, useEffect} from 'react';
+import { Redirect } from 'react-router-dom';
 
 const LoginButton = () => {
   const [show, setShow] = useState(false);
+  let [login_message, setMessage] = useState('Login');
+  const [logged, setLoginButton] = useState(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const loginSuccess = () => setLoginButton(true);
+  const loginError = () => setMessage('E-mail or password does not match. Try again.');
 
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
@@ -21,29 +28,35 @@ const LoginButton = () => {
       "password": pw
     }
 
+
     axios.post(`http://localhost:${config.server_port}/api/users/signin`, data)
       .then(res => {
         const token = res.data.token;
         localStorage.setItem(`user-token-${email}`, token);
-        console.log("token => ", token);
+        if (res.status == 200) {
+          localStorage.setItem("user_logged", true);
+          setShow(false)
+          setLoginButton(false)
+        }
       })
-
+      .catch(function (error) {
+        loginError()
+      });
   };
 
   // render() {
   return (
     <>
     <Button variant="primary" onClick={handleShow}>
-      Login
+        Login
     </Button>
     <Form>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Log in</Modal.Title>
+          <Modal.Title>{ login_message }</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control type="email" placeholder="Enter email" id="emailinput" onChange = {(event) => setEmail(event.target.value)} />
