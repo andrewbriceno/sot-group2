@@ -6,6 +6,7 @@ import config from './config.js';
 import Logout from '../components/Logout';
 import React, {useState, useEffect} from 'react';
 import { Redirect } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 const LoginButton = () => {
   const [show, setShow] = useState(false);
@@ -32,6 +33,9 @@ const LoginButton = () => {
     axios.post(`http://localhost:${config.server_port}/api/users/signin`, data)
       .then(res => {
         const token = res.data.token;
+        var decoded = jwt_decode(token);
+        console.log(`DECODED => ${decoded}`);
+        console.log(decoded);
         localStorage.setItem(`user-token-${email}`, token);
         if (res.status == 200) {
           localStorage.setItem("user_logged", true);
