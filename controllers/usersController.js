@@ -146,3 +146,19 @@ export const getGlossaryList = async (req, res) => {
     res.status(200).json(data);
   });
 };
+
+export const userPremium = async (req, res) => {
+  initMongoose()
+  const email = req.params.email;
+  User.findOneAndUpdate({email: email}, {$set: { is_premium: true }}, (err, data) => {
+    console.log(err);
+    console.log(data);
+    if(!data) {
+      res.status(400).json({
+        message: `Error setting user to premium: ${err}`,
+      });
+    } else {
+      res.status(200).json(data);
+    }
+  });
+};
