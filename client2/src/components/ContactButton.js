@@ -19,7 +19,7 @@ return (
         <Modal.Header closeButton>
           <Modal.Title>Contact</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Send us an e-mail: contact@considerherbs.com</Modal.Body>
+        <Modal.Body>Send us an e-mail: <a href="mailto:Dee@ConsiderHerbs.com">Dee@ConsiderHerbs.com</a></Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close

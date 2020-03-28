@@ -1,11 +1,16 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import Card from 'react-bootstrap/Card';
+import StripePay from './ConfigStripe.js'
+import {loadStripe} from '@stripe/stripe-js';
 import React, {useState, useEffect} from 'react';
+
 
 const ServicesButton = () => {
   const [smShow, setSmShow] = useState(false);
   const [lgShow, setLgShow] = useState(false);
+  const stripePromise = loadStripe('pk_test_cKZ9ArATTFDXKwpXTE7SrSB800xveSplrK');
 
   return (
     <>
@@ -24,13 +29,29 @@ const ServicesButton = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Example service 1 <br/>
-          Example service 2 <br/>
-          Example service 3 <br/>
-          Example service 4 <br/>
-          Example service 5 <br/>
-          Example service 6 <br/>
-          Example service 7 <br/>
+
+          <Card>
+            <Card.Header>Professional consulting</Card.Header>
+            <Card.Body>
+              <Card.Title>Special title treatment</Card.Title>
+              <Card.Text>
+                Personal consulting with Dr. Dee at scheduled time, for only $50.00.
+              </Card.Text>
+              <StripePay amount={5000}/>
+            </Card.Body>
+          </Card>
+          <hr/>
+          <Card>
+            <Card.Header>Premium services</Card.Header>
+            <Card.Body>
+              <Card.Title>Lifetime subscription</Card.Title>
+              <Card.Text>
+                In order to unlock herbal recipes for all body symptoms and premium services. Only $100.00.
+              </Card.Text>
+              <StripePay amount={10000}/>
+            </Card.Body>
+          </Card>
+
         </Modal.Body>
       </Modal>
     </>

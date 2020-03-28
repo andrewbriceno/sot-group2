@@ -36,6 +36,7 @@ const LoginButton = () => {
         var decoded = jwt_decode(token);
         console.log(`DECODED => ${decoded}`);
         console.log(decoded);
+        localStorage.setItem(`user-info-${email}`, decoded);
         localStorage.setItem(`user-token-${email}`, token);
         if (res.status == 200) {
           localStorage.setItem("user_logged", true);

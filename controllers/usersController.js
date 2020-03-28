@@ -29,7 +29,9 @@ function signJWT(payload, res) {
 function buildPayload(user) {
   return {
     user: {
-      id: user.id
+      id: user.id,
+      "is_premium": user.is_premium,
+      "is_admin": user.is_admin,
     }
   }
 }
@@ -65,7 +67,6 @@ export const signin = async (req, res) => {
       message: "User does not exist!"
     });
   }
-
 
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {

@@ -5,6 +5,7 @@ import NavBar from '../components/NavBar';
 // import { Link } from 'react-router';
 import { Link } from 'react-router-dom';
 import '../App.css';
+
 import Footer from '../components/Footer';
 
 const Home = () => {
