@@ -4,7 +4,6 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './Pages/Home';
 import About from './Pages/About';
 import Glossary from './Pages/Glossary';
-import ViewGlossaryItem from './components/ViewGlossaryItem';
 import Admin from './Pages/Admin';
 
 import AdminGlossary from './Pages/AdminGlossary';
@@ -15,8 +14,7 @@ import AdminUsers from './Pages/AdminUsers';
 import AdminAddUser from './Pages/AdminAddUser';
 import AdminEditUser from './Pages/AdminEditUser';
 
-import PageNotFound from './Pages/PageNotFound'
-import ViewProducts from './components/ViewProducts';
+import PageNotFound from './Pages/PageNotFound';
 
 
 const Main = () => {
