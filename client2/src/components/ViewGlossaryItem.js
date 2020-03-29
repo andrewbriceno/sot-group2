@@ -3,7 +3,7 @@ import axios from 'axios';
 import config from './config.js';
 
 const ViewGlossaryItem = (props) => {
-    const [glossaryItem, setGlossaryItem] = useState([]);
+    const [glossaryItem, setGlossaryItem] = useState({});
 
     const createGlossaryItem = (item) => {
         const JSX = [
