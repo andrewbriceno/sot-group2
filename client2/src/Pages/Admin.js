@@ -25,7 +25,7 @@ const Admin = () => {
               title="Remedy List"
               image="images/img_4.jpg"
               description="Add, edit, and delete remedies."
-              link="/admin/product_list"
+              link="/admin/products_list"
             />
 
             <AdminPanelCard

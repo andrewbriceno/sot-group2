@@ -21,9 +21,6 @@ const Home = () => {
     </div>
 
     <div className="site-wrap">
-
-
-
       <div className="site-mobile-menu">
         <div className="site-mobile-menu-header">
           <div className="site-mobile-menu-close mt-3">
@@ -33,11 +30,9 @@ const Home = () => {
         <div className="site-mobile-menu-body"></div>
       </div>
 
-
-      <NavBar page="Home"/>
+      <NavBar page="Home" />
 
       <div className="slide-one-item home-slider owl-carousel">
-
         <div className="site-blocks-cover inner-page overlay" style={{backgroundImage: "url('images/hero_2.jpg')"}} data-aos="fade" data-stellar-background-ratio="0.5">
           <div className="container">
             <div className="row align-items-center justify-content-center">
