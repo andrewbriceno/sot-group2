@@ -106,7 +106,7 @@ class AdminAddProducts extends React.Component {
   
       <div className="site-wrap">
   
-        <h1>Add Glossary</h1>
+        <h1>Add Product</h1>
         <a href="/admin/product_list" className="btn btn-primary text-white px-4">go back</a>
         <p/>
 

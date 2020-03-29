@@ -25,10 +25,10 @@ class AdminEditProducts extends React.Component {
 
     //check to see if it needs to be redirected
     if(! urlParams.has("key")) {
-      window.location.replace(`/admin/glossary_list`);
+      window.location.replace(`/admin/product_list`);
     } else {
       //grab data from key
-      axios.get(`http://localhost:${config.server_port}/api/admin/get_glossary`)
+      axios.get(`http://localhost:${config.server_port}/api/admin/get_product`)
         .then((res) => {
           var data = res.data.filter(g => g._id == key)[0];
           
@@ -101,8 +101,8 @@ class AdminEditProducts extends React.Component {
 
   makeIt(e) {
     var toSubmit = this.state;
-    if(toSubmit.title && toSubmit.definition && toSubmit.usage) {
-      axios.put(`http://localhost:${config.server_port}/api/admin/update_glossary/${toSubmit.title}`, toSubmit);
+    if(toSubmit.name && toSubmit.ailment && toSubmit.body_part) {
+      axios.put(`http://localhost:${config.server_port}/api/admin/update_products/${toSubmit.name}`, toSubmit);
     } else {
       console.log("not done yet");
     }
@@ -115,7 +115,7 @@ class AdminEditProducts extends React.Component {
       <div className="site-wrap">
   
         <h1>Editing Products</h1>
-        <a href="/admin/glossary_list" className="btn btn-primary text-white px-4">go back</a>
+        <a href="/admin/products_list" className="btn btn-primary text-white px-4">go back</a>
         <p/>
 
         <div>
@@ -128,17 +128,17 @@ class AdminEditProducts extends React.Component {
             <label for="body_part">Body Part: </label>
             <input id="body_part" type="text" name="body_part" value={this.state.body_part} onChange={this.handleInput.bind(this)} required/>
             <p/>
-            <input type="checkbox" id="draft" name="draft" checked={!(this.state.is_published)} onChange={this.handleInput.bind(this)}/>
-            <label for="draft">Draft</label>
-            <p/>
-            <input type="checkbox" id="premium" name="premium" checked={!(this.state.is_premium)} onChange={this.handleInput.bind(this)}/>
-            <label for="draft">Is it premium?</label>
-            <p/>
             <label for="description">Description: </label>
             <input id="description" type="text" name="description" value={this.state.description} onChange={this.handleInput.bind(this)} required/>
             <p/>
             <label for="created_at">Created At: </label>
             <input id="created_at" type="text" name="dcreated_at" value={this.state.created_at} onChange={this.handleInput.bind(this)} required/>
+            <p/>
+            <input type="checkbox" id="premium" name="premium" checked={!(this.state.is_premium)} onChange={this.handleInput.bind(this)}/>
+            <label for="draft">Is it Premium?</label>
+            <p/>
+            <input type="checkbox" id="draft" name="draft" checked={!(this.state.is_published)} onChange={this.handleInput.bind(this)}/>
+            <label for="draft">Draft</label>
             <p/>
             <input type="submit" value="Save" onClick={this.makeIt.bind(this)}/>
           </form>
