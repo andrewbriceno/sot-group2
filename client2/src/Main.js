@@ -6,7 +6,6 @@ import About from './Pages/About';
 import Glossary from './Pages/Glossary';
 import Products from './Pages/Products';
 import Admin from './Pages/Admin';
-import Products from './Pages/Products';
 
 
 import AdminGlossary from './Pages/AdminGlossary';

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import NavBar from '../components/NavBar';
-<<<<<<< HEAD
+
 import ViewGlossary from '../components/ViewGlossary'
 import Search from '../components/Search'
 
@@ -255,7 +255,7 @@ const Products = () => {
   </div>
 
 );
-=======
+/*
 import ViewProducts from '../components/ViewProducts';
 import Footer from '../components/Footer';
 
@@ -294,7 +294,7 @@ const Products = (props) => {
         </div>
 
     );
->>>>>>> 3c2857ae595bd0f6a67eb9d245dbe673f9b055a6
+*/
 }
 
 export default Products;
