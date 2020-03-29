@@ -29,8 +29,8 @@ const Main = () => {
       <Route exact path='/about' component={About}/>
       <Route exact path='/glossary' component={Glossary}/>
       <Route exact path='/glossary/:title' component={Glossary}/>
-      <Route exact path='/product' component={Products}/>
-      <Route exact path='/product/:name' component={Products}/>
+      <Route exact path='/products' component={Products}/>
+      <Route exact path='/products/:name' component={Products}/>
 
       // <Route exact path='/admin' component={Admin}/>
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import config from './config.js';
 import ViewProduct from './ViewProduct'
+import Error from './Error'
 
 const ViewProducts = (props) => {
     //TODO: find a way to eliminate setProductsJSX
@@ -9,7 +10,7 @@ const ViewProducts = (props) => {
     const [productsJSX, setProductsJSX] = useState([]);
 
     const Product = (product, letter) => {
-        if(! (product.name.toUpperCase()[0] == letter.letter)){
+        if(! (product.name.toUpperCase()[0] === letter.letter)){
             letter.letter = product.name.toUpperCase()[0];
             return(
                 <div className="glossary-letter card">
@@ -71,6 +72,13 @@ const ViewProducts = (props) => {
             setProducts(products);
             setProductsJSX(products.map(product => Product(product, lastLetter)));
         })
+        .catch(function (e) {
+            console.log(e.response)
+            if(e){
+                setProductsJSX(<Error error={e} returnURL="/"/>)
+                setProducts([])
+            }
+        });
     }, []);
 
     return getProduct();
