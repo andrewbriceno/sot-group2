@@ -4,7 +4,6 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './Pages/Home';
 import About from './Pages/About';
 import Glossary from './Pages/Glossary';
-import Products from './Pages/Products';
 import Admin from './Pages/Admin';
 
 
@@ -21,6 +20,7 @@ import AdminAddUser from './Pages/AdminAddUser';
 import AdminEditUser from './Pages/AdminEditUser';
 
 import PageNotFound from './Pages/PageNotFound';
+import Products from './Pages/Products';
 
 const Main = () => {
   return (
@@ -28,6 +28,9 @@ const Main = () => {
       <Route exact path='/' component={Home}/>
       <Route exact path='/about' component={About}/>
       <Route exact path='/glossary' component={Glossary}/>
+      <Route exact path='/glossary/:title' component={Glossary}/>
+      <Route exact path='/product' component={Products}/>
+      <Route exact path='/product/:name' component={Products}/>
 
       // <Route exact path='/admin' component={Admin}/>
 
