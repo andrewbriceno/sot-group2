@@ -17,7 +17,6 @@ import AdminEditUser from './Pages/AdminEditUser';
 
 import PageNotFound from './Pages/PageNotFound';
 
-
 const Main = () => {
   return (
     <Switch>
