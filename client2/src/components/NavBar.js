@@ -1,13 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import LoginButton from '../components/LoginButton';
 import Search from '../components/Search';
+import Logout from '../components/Logout';
+import Contact from '../components/ContactButton';
+import Services from '../components/ServicesButton';
+import logo from '../logo.svg';
 import logo from '../resources/logo.jpg';
 
 
 
 const NavBar = (props) => {
-    
-    //menuItem should be the string of a navbar item 
+
+    //menuItem should be the string of a navbar item
     const setActivePageHighlight = (menuItem) => {
         if(menuItem === props.page){
             return "active"
@@ -16,6 +20,19 @@ const NavBar = (props) => {
             return
         }
     }
+    const [token, setToken] = useState(localStorage.getItem("user_logged"));
+    const logout_user = () => setToken('true');
+    let ulogged = localStorage.getItem("user_logged")
+
+    const logged = () => {
+      if (token) {
+        return <Logout loginData={logout_user} />
+      } else {
+        return <LoginButton />
+      }
+    }
+    // console.log("==> user_logged: " + token);
+
 
     return(
     <div className="site-navbar-wrap js-site-navbar bg-white" style={{position: "fixed", boxShadow: "0 5px 5px rgba(0,0,0,0.2)"}}>
@@ -44,9 +61,9 @@ const NavBar = (props) => {
                         </ul>
                       </li>
                       <li className={setActivePageHighlight("Glossary")}><a href="glossary">Glossary</a></li>
-                      <li className={setActivePageHighlight("Services")}><a href="services.html">Services</a></li>
-                      <li className={setActivePageHighlight("Contact")}><a href="contact.html">Contact</a></li>
-                      <li><LoginButton /></li>
+                      <li className={setActivePageHighlight("Services")}><Services/></li>
+                      <li className={setActivePageHighlight("Contact")}><Contact /></li>
+                      <li>{ logged() }</li>
                       <li><Search /></li>
                     </ul>
                   </div>

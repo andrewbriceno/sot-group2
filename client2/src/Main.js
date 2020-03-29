@@ -29,15 +29,29 @@ const Main = () => {
       <Route exact path='/' component={Home}/>
       <Route exact path='/about' component={About}/>
       <Route exact path='/glossary' component={Glossary}/>
-      <Route path='/glossary/:title' component={Glossary}/>
-      <Route exact path='/product' component={Products}/>
-      <Route path='/product/:name' component={Products}/>
-      <Route exact path='/admin' component={Admin}/>
-      <Route exact path='/products' component={Products}/>
 
-      <Route exact path='/admin/glossary_list/' component={AdminGlossary}/>
-      <Route exact path='/admin/add_glossary/' component={AdminAddGlossary}/>
-      <Route exact path='/admin/edit_glossary' component={AdminEditGlossary}/>
+      // <Route exact path='/admin' component={Admin}/>
+
+
+
+      <Route
+        path="/admin"
+        render={({ match: { url } }) => (
+          <>
+            <Route path={`${url}/`} component={Admin} exact />
+            <Route path={`${url}/glossary_list`} component={AdminGlossary} />
+            <Route path={`${url}/add_glossary`} component={AdminAddGlossary} />
+            <Route path={`${url}/edit_glossary`} component={AdminEditGlossary} />
+            <Route path={`${url}/user_list`} component={AdminUsers} />
+            <Route path={`${url}/add_user`} component={AdminAddUser} />
+            <Route path={`${url}/edit_user`} component={AdminEditUser} />
+          </>
+        )}
+      />
+
+      // <Route exact path='/admin/glossary_list/' component={AdminGlossary}/>
+      // <Route exact path='/admin/add_glossary/' component={AdminAddGlossary}/>
+      // <Route exact path='/admin/edit_glossary' component={AdminEditGlossary}/>
 
       <Route exact path='/admin/products_list/' component={AdminProducts}/>
       <Route exact path='/admin/add_products/' component={AdminAddProducts}/>

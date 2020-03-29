@@ -29,7 +29,9 @@ function signJWT(payload, res) {
 function buildPayload(user) {
   return {
     user: {
-      id: user.id
+      id: user.id,
+      "is_premium": user.is_premium,
+      "is_admin": user.is_admin,
     }
   }
 }
@@ -65,7 +67,6 @@ export const signin = async (req, res) => {
       message: "User does not exist!"
     });
   }
-
 
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
@@ -143,5 +144,21 @@ export const getGlossaryList = async (req, res) => {
   initMongoose()
   Glossary.find({is_published: true}, (err, data) => {
     res.status(200).json(data);
+  });
+};
+
+export const userPremium = async (req, res) => {
+  initMongoose()
+  const email = req.params.email;
+  User.findOneAndUpdate({email: email}, {$set: { is_premium: true }}, (err, data) => {
+    console.log(err);
+    console.log(data);
+    if(!data) {
+      res.status(400).json({
+        message: `Error setting user to premium: ${err}`,
+      });
+    } else {
+      res.status(200).json(data);
+    }
   });
 };

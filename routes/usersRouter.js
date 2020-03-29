@@ -7,6 +7,8 @@ const usersRouter = express.Router();
 usersRouter.post('/signup', users.signup);
 usersRouter.post('/signin', users.signin);
 
+usersRouter.post('/user_premium', users.userPremium);
+
 //product routes
 usersRouter.route('/get_product/:name').get(validateToken, users.getProduct);
 usersRouter.route('/get_product').get(users.getProductList);
@@ -18,5 +20,6 @@ usersRouter.route('/get_recipe').get(validateToken, users.getRecipeList);
 //glossary routes
 usersRouter.route('/get_glossary/:title').get(validateToken, users.getGlossary);
 usersRouter.route('/get_glossary').get(validateToken, users.getGlossaryList);
+
 
 export default usersRouter;

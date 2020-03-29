@@ -4,13 +4,11 @@ import Container from "react-bootstrap/Container";
 import "../App.css";
 import AdminNavBar from "../components/AdminNavBar";
 import AdminPanelCard from "../components/AdminPanelCard";
-import Footer from "../components/Footer";
-
 
 const Admin = () => {
   return (
     <div className="App">
-      <div className="mb-5">
+      <div className="site-wrap">
         <AdminNavBar isDashboard={true}/>
         <Container>
           <CardDeck>
@@ -25,7 +23,7 @@ const Admin = () => {
               title="Remedy List"
               image="images/img_4.jpg"
               description="Add, edit, and delete remedies."
-              link="/admin/products_list"
+              link="/admin/product_list"
             />
 
             <AdminPanelCard
@@ -64,7 +62,6 @@ const Admin = () => {
         </Container>
         {/* </Row> */}
       </div>
-      <Footer />
     </div>
   );
 };
