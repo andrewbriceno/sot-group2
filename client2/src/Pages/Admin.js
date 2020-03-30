@@ -6,6 +6,7 @@ import AdminNavBar from "../components/AdminNavBar";
 import AdminPanelCard from "../components/AdminPanelCard";
 
 const Admin = () => {
+  
   return (
     <div className="App">
       <div className="site-wrap">
