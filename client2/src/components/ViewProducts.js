@@ -15,12 +15,12 @@ const ViewProducts = (props) => {
             return(
                 <div className="glossary-letter card">
                     <h5>{letter.letter}</h5>
-                    <a href = {"/product/" + product.name} className="text-secondary">{product.name}</a>
+                    <a href = {"/products/" + product.name} className="text-secondary">{product.name}</a>
                 </div>
             );
         }
         else{
-            return(<div><a href = {"/product/" + product.name} className="text-secondary">{product.name}</a></div>);
+            return(<div><a href = {"/products/" + product.name} className="text-secondary">{product.name}</a></div>);
         }
     }
 
