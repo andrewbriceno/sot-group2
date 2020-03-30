@@ -737,7 +737,7 @@ a {
     margin: 5px; }
     .block-13 .owl-dots .owl-dot > span, .block-14 .owl-dots .owl-dot > span, .block-15 .owl-dots .owl-dot > span {
       line-height: 0;
-      display: inline-block;
+      /* display: inline-block; */ /* clashes with float: left below. float overrides display and throws a problem */
       width: 7px;
       height: 7px;
       border-radius: 50%;
@@ -1623,3 +1623,8 @@ a {
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
+
+.modal-open {
+  overflow-y: inherit !important;
+  padding-right: 0 !important;
+}

@@ -1,10 +1,10 @@
 import React from 'react';
 import '../App.css';
 import NavBar from '../components/NavBar';
-import ViewGlossary from '../components/ViewGlossary';
+import ViewProducts from '../components/ViewProducts';
 import Footer from '../components/Footer';
 
-const Glossary = (props) => {
+const Products = (props) => {
     
     return (
         <div className="AboutPage">
@@ -24,13 +24,13 @@ const Glossary = (props) => {
                     <div className="site-mobile-menu-body"></div>
                 </div>
 
-                <NavBar page="Glossary"/>
+                <NavBar page="Products"/>
 
                 <div className="site-blocks-cover inner-page overlay" style={{backgroundImage: "url('images/hero_2.jpg')"}} data-aos="fade" data-stellar-background-ratio="0.5">
                     <div className="row align-items-center justify-content-center">
                         <div className="text-center" data-aos="fade">
-                            <h1 className="text-uppercase">Glossary</h1>
-                            <ViewGlossary title = {props.match.params.title}/>
+                            <h1 className="text-uppercase">Products</h1>
+                            <ViewProducts name = {props.match.params.name}/>
                         </div>
                     </div>
                 </div>
@@ -41,4 +41,4 @@ const Glossary = (props) => {
     );
 }
 
-export default Glossary;
+export default Products;
