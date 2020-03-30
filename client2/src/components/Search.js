@@ -7,13 +7,12 @@ const SearchField = () => {
     url = url.split("/")[3]
 
     const goToPage = (value) => {
-        alert(value);
         if(value){
             document.location = "/" + url + "/" + value;
         }
     }
 
-    if (url == "products") {
+    if (url == "products" || url == "glossary") {
       return (
           <form  target="_blank" onSubmit={() => goToPage(searchText)}>
               <input 
