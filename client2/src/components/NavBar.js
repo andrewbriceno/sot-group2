@@ -4,7 +4,7 @@ import Search from '../components/Search';
 import Logout from '../components/Logout';
 import Contact from '../components/ContactButton';
 import Services from '../components/ServicesButton';
-import logo from '../logo.svg';
+//import logo from '../logo.svg';
 import logo from '../resources/logo.jpg';
 
 
@@ -54,7 +54,7 @@ const NavBar = (props) => {
                         <a href="about">About</a>
                         <ul className="dropdown arrow-top">
                           <li><a href="testimonials.html">Testimonials</a></li>
-                          <li><a href="products">Products</a></li>
+                          <li><a href="products" className={setActivePageHighlight("Products")}>Products</a></li>
                           <li><a href="gallery.html">Gallery</a></li>
                           <li><a href="faq.html">Forum</a></li>
                           <li><a href="why-choose-us.html">Why Choose Us</a></li>
